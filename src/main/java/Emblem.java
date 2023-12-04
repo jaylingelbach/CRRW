@@ -18,4 +18,4 @@ public enum Emblem {
     public String getDisplayName() {
         return displayName;
     }
-    }
+}

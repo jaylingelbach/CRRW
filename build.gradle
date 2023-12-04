@@ -10,8 +10,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Add this line
-    implementation 'com.h2database:h2' // Add this line if you want to use an H2 in-memory database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    implementation 'net.coobird:thumbnailator:0.4.14'
 }
 
 springBoot {

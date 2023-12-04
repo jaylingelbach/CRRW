@@ -11,13 +11,19 @@ public class Plushie {
 
     private String name;
     private Emblem emblem;
+    private UserAccount userAccount;
+
+    //    there seems to be multiple ways to get basic images working, will need to research this tho.
+    // following text is just Pseudocode
+//    private Image profileImage;
 
     public Plushie() {
         // Default constructor
     }
 
-    public Plushie(String name, Emblem emblem) {
+    public Plushie(String name, Emblem emblem, UserAccount userAccount) {
         this.name = name;
         this.emblem = emblem;
+        this.userAccount = userAccount;
     }
 }
