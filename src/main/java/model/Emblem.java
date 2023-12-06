@@ -1,3 +1,5 @@
+package model;
+
 public enum Emblem {
     NONE("None"),
     HEART("Heart"), // pink
@@ -7,7 +9,8 @@ public enum Emblem {
     LEAF("Leaf"), // green
     SPLASH("Splash"), // blue
     DIAMOND("Diamond"), // purple
-    MOON("Moon"); // white/black
+    MOON("Moon"), // white
+    SKULL("Skull"); // black
 
     private final String displayName;
 
