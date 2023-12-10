@@ -1,14 +1,17 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.1.6'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.springframework.boot' version '2.6.5'
+	// previously was using '3.1.0', this older version
+	id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'CRRW'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
 }
 
 repositories {
@@ -16,8 +19,14 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java:8.0.23'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+//JPA dependencies so we can use JPA imports
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'javax.persistence:javax.persistence-api:2.2'
 }
 
 tasks.named('bootBuildImage') {
