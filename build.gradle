@@ -21,12 +21,11 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'mysql:mysql-connector-java:8.0.23'
+	implementation 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-//JPA dependencies so we can use JPA imports
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	implementation 'javax.persistence:javax.persistence-api:2.2'
+
 }
 
 tasks.named('bootBuildImage') {
