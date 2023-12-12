@@ -34,13 +34,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #fff;
-            border-radius: 10px;
+
         }
 
         label, input, button {
             margin-bottom: 10px;
-            width: 100%;
         }
 
         .form-row-container {
@@ -48,19 +46,29 @@
             align-items: center;
         }
 
-        .form-row-container label {
-            flex: 1;
-            text-align: right;
-            margin-right: 10px;
-            color: #35424A; /* Adjust text color */
+        .form-row-container {
+
+
+            align-items: right;
+            max-width: 325px; /* Adjust the maximum width as needed */
+            margin: 0 auto; /* Center the form on the page */
+            margin-right: 0; /* forces the labels and inputs to be right justified */
         }
 
+        .form-row-container label {
+            margin-right: 10px;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+
         .form-row-container input {
-            flex: 2;
-            padding: 8px;
-            border: 3px solid #8792AD;
-            border-radius: 6px;
-            transition: border-color 0.3s ease;
+        flex: 1;
+        padding: 8px;
+        margin-left: 20px;
+        border: 3px solid #8792AD;
+        border-radius: 6px;
+        transition: border-color 0.3s ease;
         }
 
         .form-row-container input:focus {

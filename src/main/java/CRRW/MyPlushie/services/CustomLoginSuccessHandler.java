@@ -22,7 +22,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         System.out.println("SuccessHandler activated, going to homepage!");
 
 
-        // Redirect to the home page
+        // Redirect to the home page/index.html
         response.sendRedirect("/");
     }
 }
