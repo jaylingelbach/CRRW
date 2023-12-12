@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plushie App - Register</title>
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+        }
+
+        img {
+            width: 400px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        label, input, button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .form-row-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-row-container label {
+            flex: 1;
+            text-align: right;
+            margin-right: 10px;
+            color: #35424A; /* Adjust text color */
+        }
+
+        .form-row-container input {
+            flex: 2;
+            padding: 8px;
+            border: 3px solid #8792AD;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-row-container input:focus {
+            border-color: #35424A;
+        }
+
+        button {
+            border: 3px solid #8172BA;
+            background-color: #A095EF;
+            padding: 8px 32px;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 700;
+
+
+        }
+
+        button:hover {
+            background-color: #C8C5FF;
+        }
+
+    </style>
+</head>
+<body>
+
+<div>
+    <img th:src="@{/images/myplushielogo.png}" alt="My Plushie App Logo">
+</div>
+
+<h1>Register Your Account</h1>
+<form action="/register" method="post">
+    <div class="form-row-container">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required autofocus>
+    </div>
+    <div class="form-row-container">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Register!!</button>
+</form>
+
+</body>
+</html>

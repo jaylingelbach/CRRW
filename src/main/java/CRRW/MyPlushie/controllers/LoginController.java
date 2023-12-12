@@ -10,5 +10,10 @@ public class LoginController {
         return "login"; // takes the user to login.html
     }
 
+    @GetMapping("/createAccount")
+    public String createAccount() {
+        return "createAccount"; // takes the user to createAccount.html
+    }
+
 
 }

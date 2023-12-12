@@ -11,12 +11,12 @@ public class Category {
 
     private String name;
 
+//    user that this category belongs to. Only categories you make should you be able to use.
     private User user;
-
 
     private Set<Plushie> plushies;
 
-    public Category(){}
+    public Category(){} //blank constructor
 
     public Category(Long id, String name, User user, Set<Plushie> plushies) {
         this.id = id;

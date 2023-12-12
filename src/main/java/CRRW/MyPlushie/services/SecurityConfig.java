@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
 
 //                pages the user can access without needing to be logged in
-                .antMatchers("/login", "/images/**").permitAll()
+                .antMatchers("/login", "/images/**", "/createAccount").permitAll()
 
 //                pages the user can access only if authenticated
 //                .antMatchers("/").authenticated() // Require authentication for the root URL
