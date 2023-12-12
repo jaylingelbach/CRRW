@@ -1,6 +1,7 @@
 package CRRW.MyPlushie.models;
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,21 +18,21 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private Set<Plushie> plushies;
+// TODO: restore set<Plushie> when setting up all fields for use in MySQL with annotations and relations.
+// TODO: restore profilephoto later, got too many errors trying to use it this early
 
-    private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
-
-
-// TODO: make constructor after putting in all nessessary things
-
+//    private Set<Plushie> plushies;
+//
+//    private byte[] profilephoto; // we can store the binary data of the image, making it easier to store in MySQL.
+    
 
     public User(){}     //blank constructor
-    public User(Long id, String username, String password, Set<Plushie> plushies, byte[] photo) {
+    public User(Long id, String username, String password/*, Set<Plushie> plushies*/  /*, byte[] profilephoto*/) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.plushies = plushies;
-        this.photo = photo;
+        //this.plushies = plushies;
+//        this.profilephoto = profilephoto;
     }
 
     public Long getId() {
@@ -58,19 +59,19 @@ public class User {
         this.password = password;
     }
 
-    public Set<Plushie> getPlushies() {
-        return plushies;
-    }
+//    public Set<Plushie> getPlushies() {
+//        return plushies;
+//    }
+//
+//    public void setPlushies(Set<Plushie> plushies) {
+//        this.plushies = plushies;
+//    }
 
-    public void setPlushies(Set<Plushie> plushies) {
-        this.plushies = plushies;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
+//    public byte[] getPhoto() {
+//        return profilephoto;
+//    }
+//
+//    public void setPhoto(byte[] profilephoto) {
+//        this.profilephoto = profilephoto;
+//    }
 }

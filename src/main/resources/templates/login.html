@@ -4,7 +4,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/templates/styles/loginStyles.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,6 +72,32 @@
                 .form-row-container input:focus {
                     border-color: #35424A;
                 }
+/* General button styles */
+button {
+    border: 3px solid #8172BA;
+    padding: 8px 32px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+    font-weight: 700;
+}
+
+Button:hover {
+    background-color: #2E8B57;
+    color: #FFF;
+    transform: scale(1.15);
+}
+
+    button[name="loginButton"] {
+    background-color: #A095EF;
+    }
+
+     button[name="createAccountButton"] {
+    background-color: #00FF7F;
+    border: 3px solid #00D16D;
+    color: black;
+    }
 
 
 
