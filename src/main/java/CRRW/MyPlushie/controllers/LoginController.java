@@ -9,4 +9,6 @@ public class LoginController {
     public String login() {
         return "login"; // takes the user to login.html
     }
+
+
 }
