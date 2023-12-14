@@ -34,12 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
 
 //                pages the user can access without needing to be logged in
-                .antMatchers("/login", "/images/**", "/createAccount").permitAll()
-
-//                pages the user can access only if authenticated
-//                .antMatchers("/").authenticated() // Require authentication for the root URL
-
-
+                .antMatchers("/login", "/images/**", "/createAccount", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -49,10 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .logoutUrl("/logout")
-                .permitAll()
+                .logoutUrl("/logout")  // The URL to trigger logout
+                .logoutSuccessUrl("/login")  // Redirect to this URL after successful logout
+                .invalidateHttpSession(true)  // Invalidate the HTTP session
+                .deleteCookies("JSESSIONID")  // Delete cookies, if any
+//                .permitAll() // Permit all for logout
                 .and()
             .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//                .csrf().disable();
 
     }
 
