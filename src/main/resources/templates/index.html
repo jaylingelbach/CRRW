@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPlushie</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+        }
+
+
+        .logo {
+            position: fixed;
+            width: 150px;
+            height: auto;
+            top: 15px;
+            left: 15px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-top: 50px; /* Adjust top margin */
+        }
+
+        .logout-button {
+            position: fixed;
+            top: 10px; /* Adjust top position */
+            right: 10px; /* Adjust right position */
+            background-color: #A095EF;
+            padding: 8px 16px;
+            color: white;
+            border: 3px solid #8172BA;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .main-container {
+    width: 500px;
+}
+    </style>
+</head>
+<body>
+<img th:src="@{/images/myplushielogo.png}" class="logo" alt="My Plushie App Logo">
+
+<!--<form id="logoutForm" action="/logout" method="post">-->
+<!--    <button class="logout-button" type="submit">Logout</button>-->
+<!--</form>-->
+
+<div class="main-container">
+    <h1 class="welcome-message" th:text="'Welcome ' + ${username} + '!'"></h1>
+</div>
+
+
+
+
+</body>
+</html>

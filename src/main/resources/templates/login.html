@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--    <link rel="stylesheet" href="/css/styles.css">-->
+
+    <title>My Plushie App</title>
+    <style>
+
+        <!--custom cursor add for later-->
+<!--        body, input, label, button {-->
+<!--           cursor: url('/images/custom-cursor.png'), auto;-->
+<!--       }-->
+
+               body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          font-family: 'Ubuntu', sans-serif;
+          margin: 0;
+       }
+
+       img {
+          width: 400px;
+          height: auto;
+          margin-bottom: 20px;
+       }
+
+       h2 {
+          margin-bottom: 20px;
+       }
+
+       form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+       }
+
+       label, input, button {
+          margin-bottom: 10px;
+       }
+
+       .form-row-container {
+          display: flex;
+          align-items: center;
+       }
+
+       .form-row-container {
+
+
+          align-items: right;
+          max-width: 325px; /* Adjust the maximum width as needed */
+          margin: 0 auto; /* Center the form on the page */
+          margin-right: 0; /* forces the labels and inputs to be right justified */
+       }
+
+       .form-row-container label {
+          margin-right: 10px;
+          padding-right: 10px;
+          text-align: right;
+       }
+
+
+       .form-row-container input {
+       flex: 1;
+       padding: 8px;
+       margin-left: 20px;
+       border: 3px solid #8792AD;
+       border-radius: 6px;
+       transition: border-color 0.3s ease;
+       }
+
+       .form-row-container input:focus {
+          border-color: #35424A;
+       }
+       /* General button styles */
+       button {
+       border: 3px solid #8172BA;
+       padding: 8px 32px;
+       color: white;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+       font-weight: 700;
+       }
+
+       Button:hover {
+       background-color: #2E8B57;
+       color: #FFF;
+       transform: scale(1.15);
+       }
+
+       button[name="loginButton"] {
+       background-color: #A095EF;
+       }
+
+       button[name="createAccountButton"] {
+       background-color: #00FF7F;
+       border: 3px solid #00D16D;
+       color: black;
+       }
+
+    </style>
+
+</head>
+<body>
+
+<div>
+    <img th:src="@{/images/myplushielogo.png}" alt="My Plushie App Logo">
+</div>
+
+<form th:action="@{/login}" method="post" th:object="${loginForm}">
+    <div class="form-row-container">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required autofocus>
+    </div>
+    <div class="form-row-container">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" name="loginButton">Login</button>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+</form>
+
+<!--sends the user to the createAccount view-->
+<a th:href="@{/createAccount}">
+    <button name="createAccountButton">Create Account</button>
+</a>
+
+</body>
+</html>
