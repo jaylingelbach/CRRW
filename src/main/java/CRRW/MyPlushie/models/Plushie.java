@@ -8,7 +8,8 @@ import java.util.Set;
 @ Entity
 public class Plushie {
 
-    @Id   @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -18,6 +19,7 @@ public class Plushie {
     private User user;
     private String purchaseLink;
     private Set<Category> categories;
+    //private Category categories;
 
    // No Arg constructor for the JPA to create new instance
 
@@ -25,8 +27,9 @@ public class Plushie {
 
 
     // TODO: finish constructor and get/set stuff
+    // TODO: include categories
 
-    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink, Set<Category> categories) {
+    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink,Set<Category> categories) {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
@@ -37,7 +40,7 @@ public class Plushie {
         this.categories = categories;
     }
 
-    public Long getId() {
+    public Long getId () {
         return id;
     }
 
@@ -93,7 +96,8 @@ public class Plushie {
         this.purchaseLink = purchaseLink;
     }
 
-    public Set<Category> getCategories() {
+
+   public Set<Category> getCategories() {
         return categories;
     }
 
