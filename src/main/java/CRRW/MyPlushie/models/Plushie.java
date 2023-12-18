@@ -2,9 +2,10 @@ package CRRW.MyPlushie.models;
 
 import java.util.Set;
 
-
+@Entity
 public class Plushie {
-
+@Id
+@GeneratedValue
 
     private Long id;
 

@@ -1,8 +1,9 @@
-plugins
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
 
-//id 'org.springframework.boot' version '3.2.0'
-//id 'io.spring.dependency-management' version '1.1.0'
-//id 'java'
 
 
 
@@ -11,59 +12,59 @@ repositories {
 }
 
 dependencies {
-//   implementation 'org.springframework.boot:spring-boot-starter-web'
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    implementation 'com.h2database:h2'
-//    implementation 'net.coobird:thumbnailator:0.4.14'
-    
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    implementation 'net.coobird:thumbnailator:0.4.14'
+
 //below needed for MySQL
-//    implementation 'mysql:mysql-connector-java:8.0.23'
+   implementation 'mysql:mysql-connector-java:8.0.23'
 
 }
 
-//springBoot {
-//    mainClass = 'MyPlushieApp'
-//}
+springBoot {
+  mainClass = 'MyPlushieApp'
+}
 
 //java {
 //    toolchain {
-//        languageVersion = JavaLanguageVersion.of(17)
+  //      languageVersion = JavaLanguageVersion.of(17)
 //    }
 //=======
 //	id 'java'
 //	id 'org.springframework.boot' version '2.6.5'
-	// previously was using '3.1.0', this older version
+//	 previously was using '3.1.0', this older version
 //	id 'io.spring.dependency-management' version '1.1.0'
-//}
+////}
 
 group = 'CRRW'
 version = '0.0.1-SNAPSHOT'
 
-//java {
-//	toolchain {
-//		languageVersion = JavaLanguageVersion.of(17)
-//	}
-//}
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter-web'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	implementation 'mysql:mysql-connector-java'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-//	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 
 }
 
-//tasks.named('bootBuildImage') {
-//	builder = 'paketobuildpacks/builder-jammy-base:latest'
-//}
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
 
-//tasks.named('test') {
-//	useJUnitPlatform()
+tasks.named('test') {
+	useJUnitPlatform()
 //>>>>>>> bc648c0c8eaff33da39b0aa14750b1c37c7ea776
-//}
+}
