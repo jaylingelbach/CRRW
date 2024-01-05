@@ -3,10 +3,11 @@ package CRRW.MyPlushie.models;
 import javax.persistence.*;
 import java.util.Set;
 
-
+@Entity
 public class Category {
 
-
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -14,6 +15,8 @@ public class Category {
 //    user that this category belongs to. Only categories you make should you be able to use.
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name= "plushie_id")
     private Set<Plushie> plushies;
 
     public Category(){} //blank constructor

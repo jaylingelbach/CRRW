@@ -1,6 +1,8 @@
 package CRRW.MyPlushie.models;
 
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;

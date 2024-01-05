@@ -1,8 +1,6 @@
 package CRRW.MyPlushie.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 @ Entity
@@ -16,8 +14,12 @@ public class Plushie {
     private Emblem emblem;
     private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
     private Integer zipcode;
+
     private User user;
     private String purchaseLink;
+
+    @OneToMany(mappedBy = "plushie_id")
+
     private Set<Category> categories;
     //private Category categories;
 
