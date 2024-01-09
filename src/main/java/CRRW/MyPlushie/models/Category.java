@@ -3,9 +3,7 @@ package CRRW.MyPlushie.models;
 import javax.persistence.*;
 import java.util.Set;
 
-
 public class Category {
-
 
     private Long id;
 

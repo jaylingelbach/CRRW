@@ -42,6 +42,8 @@ public class LoginController {
         return "redirect:/"; // Redirect to login page after registration
     }
 
+//    @GetMapping("/manage-account")
+//    public String
 
 
 }

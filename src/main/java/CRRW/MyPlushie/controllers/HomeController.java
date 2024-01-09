@@ -9,7 +9,6 @@ import CRRW.MyPlushie.services.UserService;
 
 @Controller
 public class HomeController {
-    // if user is NOT authenticated, takes the user to the login page, else goes to the home page (index.html)
 
     @Autowired
     private UserService userService; // we'll need the information of the current user
@@ -28,4 +27,9 @@ public class HomeController {
             return "redirect:/login";
         }
     }
+
+//    @GetMapping("/addPal") //uses addPal.html
+//    public String addPal() {
+//        return "redirect:/";
+//    }
 }
