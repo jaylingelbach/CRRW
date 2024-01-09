@@ -7,3 +7,4 @@ public class MyPlushieApp {
         SpringApplication.run(MyPlushieApp.class, args);
     }
 }
+

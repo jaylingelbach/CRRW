@@ -1,29 +1,41 @@
 package CRRW.MyPlushie.models;
 
-import java.util.Set;
-
-@Entity
+import java.util.List;
+import javax.persistence.*;
 public class Plushie {
-@Id
-@GeneratedValue
+
+    private String name;
+    private String emblem;
+    private String dateAdopted;
+    private String purchaseLink;
+    // Constructors, getters, and setters
+    //...
+
+
+//    @Entity
+//    @Id
+//    @GeneratedValue
 
     private Long id;
 
-    private String name;
-    private Emblem emblem;
     private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
     private Integer zipcode;
     private User user;
-    private String purchaseLink;
-    private Set<Category> categories;
 
-//    blank constructor
-    public Plushie(){}
+    //private Set<Category> categories;
+
+    //blank constructor
+
+    public Plushie() {
+    }
 
 
-    // TODO: finish contructor and get/set stuff
+    //TODO:
+    //finish contructor
+    //and get/
+    //set stuff
 
-    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink, Set<Category> categories) {
+    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink) {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
@@ -31,7 +43,7 @@ public class Plushie {
         this.zipcode = zipcode;
         this.user = user;
         this.purchaseLink = purchaseLink;
-        this.categories = categories;
+
     }
 
     public Long getId() {
@@ -46,7 +58,7 @@ public class Plushie {
         return name;
     }
 
-    public void setName(String name) {
+    public void ListName(String name) {
         this.name = name;
     }
 
@@ -54,7 +66,7 @@ public class Plushie {
         return emblem;
     }
 
-    public void setEmblem(Emblem emblem) {
+    public void ListEmblem(Emblem emblem) {
         this.emblem = emblem;
     }
 
@@ -90,11 +102,4 @@ public class Plushie {
         this.purchaseLink = purchaseLink;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 }

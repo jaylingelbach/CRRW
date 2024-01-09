@@ -21,8 +21,8 @@ public class User {
 // TODO: restore set<Plushie> when setting up all fields for use in MySQL with annotations and relations.
 // TODO: restore profilephoto later, got too many errors trying to use it this early
 
-//    private Set<Plushie> plushies;
-//
+    private List<Plushie> plushies;
+
 //    private byte[] profilephoto; // we can store the binary data of the image, making it easier to store in MySQL.
     
 
@@ -59,19 +59,19 @@ public class User {
         this.password = password;
     }
 
-//    public Set<Plushie> getPlushies() {
-//        return plushies;
-//    }
-//
-//    public void setPlushies(Set<Plushie> plushies) {
-//        this.plushies = plushies;
-//    }
+    public Set<Plushie> getPlushies() {
+        return plushies;
+    }
 
-//    public byte[] getPhoto() {
-//        return profilephoto;
-//    }
-//
-//    public void setPhoto(byte[] profilephoto) {
-//        this.profilephoto = profilephoto;
-//    }
+    public void setPlushies(Set<Plushie> plushies) {
+        this.plushies = plushies;
+    }
+
+    public byte[] getPhoto() {
+        return profilephoto;
+    }
+
+    public void setPhoto(byte[] profilephoto) {
+        this.profilephoto = profilephoto;
+    }
 }

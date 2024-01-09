@@ -1,7 +1,11 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Plushie {
@@ -18,22 +22,22 @@ public class Plushie {
     private UserAccount userAccount;
 
     // Establishing a Many-to-Many relationship: Each plushie can belong to multiple categories
-    @ManyToMany
-    @JoinTable(
-            name = "plushie_category",
-            joinColumns = @JoinColumn(name = "plushie_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "plushie_category",
+//            joinColumns = @JoinColumn(name = "plushie_id"),
+//            inverseJoinColumns = @JoinColumn(name = "category_id"))
+//    private Set<Category> categories;
 
 //    blank constructor
-    public Plushie(){}
+    public Plushie(){
 
-    public Plushie(Long id, String name, Emblem emblem, UserAccount userAccount, Set<Category> categories) {
+    //public Plushie(Long id, String name, Emblem emblem, UserAccount userAccount, Set<Category> categories) {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
         this.userAccount = userAccount;
-        this.categories = categories;
+
     }
 
     public Long getId() {
@@ -68,11 +72,6 @@ public class Plushie {
         this.userAccount = userAccount;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
+
 }

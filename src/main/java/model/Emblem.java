@@ -1,4 +1,6 @@
 package model;
+import javax.persistence.*;
+import java.util.Set;
 
 public enum Emblem {
     NONE("None"),
