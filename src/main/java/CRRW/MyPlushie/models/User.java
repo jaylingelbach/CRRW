@@ -21,17 +21,19 @@ public class User {
 // TODO: restore set<Plushie> when setting up all fields for use in MySQL with annotations and relations.
 // TODO: restore profilephoto later, got too many errors trying to use it this early
 
-//    private Set<Plushie> plushies;
+    @OneToMany
+    @JoinColumn (name= "user_id")
+    private List<Plushie> plushies =new ArrayList<>();
 //
 //    private byte[] profilephoto; // we can store the binary data of the image, making it easier to store in MySQL.
     
 
     public User(){}     //blank constructor
-    public User(Long id, String username, String password/*, Set<Plushie> plushies*/  /*, byte[] profilephoto*/) {
+    public User(Long id, String username, String password, List<Plushie> plushies  /*, byte[] profilephoto*/) {
         this.id = id;
         this.username = username;
         this.password = password;
-        //this.plushies = plushies;
+        this.plushies = plushies;
 //        this.profilephoto = profilephoto;
     }
 
@@ -59,13 +61,14 @@ public class User {
         this.password = password;
     }
 
-//    public Set<Plushie> getPlushies() {
-//        return plushies;
-//    }
-//
-//    public void setPlushies(Set<Plushie> plushies) {
-//        this.plushies = plushies;
-//    }
+    public List<Plushie> getPlushies()
+    {
+    return plushies;
+    }
+
+    public void setPlushies(List<Plushie> plushies) {
+        this.plushies = plushies;
+    }
 
 //    public byte[] getPhoto() {
 //        return profilephoto;

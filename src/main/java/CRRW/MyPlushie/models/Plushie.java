@@ -15,12 +15,11 @@ public class Plushie {
     private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
     private Integer zipcode;
 
+    @ManyToOne
     private User user;
     private String purchaseLink;
 
-    @OneToMany(mappedBy = "plushie_id")
 
-    private Set<Category> categories;
     //private Category categories;
 
    // No Arg constructor for the JPA to create new instance
@@ -31,7 +30,8 @@ public class Plushie {
     // TODO: finish constructor and get/set stuff
     // TODO: include categories
 
-    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink,Set<Category> categories) {
+    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink)
+    {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
@@ -39,16 +39,12 @@ public class Plushie {
         this.zipcode = zipcode;
         this.user = user;
         this.purchaseLink = purchaseLink;
-        this.categories = categories;
+        //this.categories = categories;
     }
 
     public Long getId () {
         return id;
     }
-
-     /* public void setId(Long id) {
-    //  this.id = id;
-     } */
 
     public String getName() {
         return name;
@@ -99,11 +95,4 @@ public class Plushie {
     }
 
 
-   public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 }

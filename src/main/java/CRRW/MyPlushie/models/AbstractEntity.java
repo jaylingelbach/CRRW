@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.*;
 import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
@@ -15,7 +16,8 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private long id;
 
-    //@NotBlank(message = "Please enter a name")
+
+    //@NotBlank (message = "Please enter a name")
     //@Size(min=3, max= 200, message= "Name must be 3-200 characters long")
     private String name;
 

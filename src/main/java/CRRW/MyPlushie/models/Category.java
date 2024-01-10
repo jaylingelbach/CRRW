@@ -1,6 +1,6 @@
 package CRRW.MyPlushie.models;
 
-import javax.persistence.*;
+/*import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -61,4 +61,4 @@ public class Category {
         this.plushies = plushies;
     }
 
-}
+}*/
