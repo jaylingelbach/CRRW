@@ -1,5 +1,6 @@
 package CRRW.MyPlushie.controllers;
 import CRRW.MyPlushie.models.Plushie;
+import CRRW.MyPlushie.services.PlushieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +25,14 @@ public class PlushieController {
         return new ResponseEntity<>(plushies, HttpStatus.OK);
     }
 
-        // Create a new plushie
-        @PostMapping
-        public ResponseEntity<Plushie> createPlushie(@RequestBody Plushie plushie) {
-            plushie.ListId(generateId());
-            plushies.add(plushie);
-            return new ResponseEntity<>(plushie, HttpStatus.CREATED);
-        }
+    // Create a new plushie
+//    TODO: create the following missing methods in this file: generateId(), findPlushieById()
+    @PostMapping
+    public ResponseEntity<Plushie> createPlushie(@RequestBody Plushie plushie) {
+        plushie.setId(generateId());
+        plushies.add(plushie);
+        return new ResponseEntity<>(plushie, HttpStatus.CREATED);
+    }
 
     // Update a plushie by ID
     @PutMapping("/{id}")
@@ -57,49 +59,50 @@ public class PlushieController {
     }
 
 
-// Get all plushies sorted alphabetically by name
-@GetMapping("/alphabetical")
-public ResponseEntity<List<Plushie>> getAllPlushiesAlphabetical() {
+    // Get all plushies sorted alphabetically by name
+    @GetMapping("/alphabetical")
+    public ResponseEntity<List<Plushie>> getAllPlushiesAlphabetical() {
         List<Plushie> sortedPlushies = plushies.stream()
-        .sorted(Comparator.comparing(Plushie::getName))
-        .collect(Collectors.toList());
+                .sorted(Comparator.comparing(Plushie::getName))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(sortedPlushies, HttpStatus.OK);
-        }
+    }
 
-// Get all plushies sorted by date adopted
-@GetMapping("/date-adopted")
-public ResponseEntity<List<Plushie>> getAllPlushiesByDateAdopted() {
+    // Get all plushies sorted by date adopted
+    @GetMapping("/date-adopted")
+    public ResponseEntity<List<Plushie>> getAllPlushiesByDateAdopted() {
         List<Plushie> sortedPlushies = plushies.stream()
-        .sorted(Comparator.comparing(Plushie::getDateAdopted))
-        .collect(Collectors.toList());
+                .sorted(Comparator.comparing(Plushie::getDateAdopted))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(sortedPlushies, HttpStatus.OK);
-        }
+    }
 
-// Get all plushies sorted by emblem
-@GetMapping("/by-emblem")
-public ResponseEntity<List<Plushie>> getAllPlushiesByEmblem() {
+    // Get all plushies sorted by emblem
+    @GetMapping("/by-emblem")
+    public ResponseEntity<List<Plushie>> getAllPlushiesByEmblem() {
         List<Plushie> sortedPlushies = plushies.stream()
-        .sorted(Comparator.comparing(Plushie::getEmblem))
-        .collect(Collectors.toList());
+                .sorted(Comparator.comparing(Plushie::getEmblem))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(sortedPlushies, HttpStatus.OK);
-        }
-        }
+    }
+
 
     @Autowired
-   //private PlushieService plushieService;
+    private PlushieService plushieService;
 
     @GetMapping("/sorted/alphabetically")
-    //public List<Plushie> getPlushiesSortedAlphabetically() {
+    public List<Plushie> getPlushiesSortedAlphabetically() {
 
-        //return plushieService.getPlushiesSortedAlphabetically();
-    //}
+        return plushieService.getPlushiesSortedAlphabetically();
+    }
 
     @GetMapping("/sorted/bydateadopted")
-    //public List<Plushie> getPlushieSortedByDateAdopted() {
-        //return plushieService.getPlushiesSortedByDateAdopted();
-   // }
+    public List<Plushie> getPlushieSortedByDateAdopted() {
+        return plushieService.getPlushiesSortedByDateAdopted();
+    }
 
     @GetMapping("/sorted/byemblem")
-    //public List<Plushie> getPlushiesSortedByEmblem() {
-        //return plushieService.getPlushiesSortedByEmblem();
+    public List<Plushie> getPlushiesSortedByEmblem() {
+        return plushieService.getPlushiesSortedByEmblem();
+    }
 }

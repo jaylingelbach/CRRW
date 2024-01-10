@@ -1,20 +1,24 @@
 package CRRW.MyPlushie.models;
 
 import java.util.List;
+import java.sql.Date;
 import javax.persistence.*;
+@Entity
 public class Plushie {
 
     private String name;
-    private String emblem;
-    private String dateAdopted;
+    private Emblem emblem;
+    private String description;
+    private Date dateAdopted;
     private String purchaseLink;
+
     // Constructors, getters, and setters
     //...
 
 
-//    @Entity
-//    @Id
-//    @GeneratedValue
+
+    @Id
+    @GeneratedValue
 
     private Long id;
 
@@ -22,23 +26,18 @@ public class Plushie {
     private Integer zipcode;
     private User user;
 
-    //private Set<Category> categories;
-
     //blank constructor
 
     public Plushie() {
     }
 
 
-    //TODO:
-    //finish contructor
-    //and get/
-    //set stuff
-
-    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink) {
+    public Plushie(Long id, String name, Emblem emblem, String description, Date dateAdopted, byte[] photo, Integer zipcode, User user, String purchaseLink) {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
+        this.description = description;
+        this.dateAdopted = dateAdopted;
         this.photo = photo;
         this.zipcode = zipcode;
         this.user = user;
@@ -58,7 +57,8 @@ public class Plushie {
         return name;
     }
 
-    public void ListName(String name) {
+
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -66,8 +66,24 @@ public class Plushie {
         return emblem;
     }
 
-    public void ListEmblem(Emblem emblem) {
+    public void setEmblem(Emblem emblem) {
         this.emblem = emblem;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDateAdopted() {
+        return dateAdopted;
+    }
+
+    public void setDateAdopted(Date dateAdopted) {
+        this.dateAdopted = dateAdopted;
     }
 
     public byte[] getPhoto() {

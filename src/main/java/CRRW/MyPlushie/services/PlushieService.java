@@ -1,16 +1,12 @@
 package CRRW.MyPlushie.services;
 //PlushieService.java (Service)
 
-import CRRW.MyPlushie.models.User;
-import CRRW.MyPlushie.repositories.UserRepository;
+import CRRW.MyPlushie.models.Plushie;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import repository.PlushieRepository;
 
-import java.util.ArrayList;
-
+import java.util.*;
 @Service
 public class PlushieService {
     @Autowired
@@ -39,6 +35,8 @@ public class PlushieService {
         plushieRepository.deleteById(id);
     }
 
+    //TODO: in PlushieRepository.java, add the following methods: findAllByOrderByName, findAllByOrderByDateAdopted,
+    // and findAllByOrderByEmblem that are referenced here but don't exist yet.
     public List<Plushie> getPlushiesSortedAlphabetically() {
         return plushieRepository.findAllByOrderByName();
     }

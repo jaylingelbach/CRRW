@@ -1,5 +1,6 @@
 package CRRW.MyPlushie.models;
 //import javax.persistence.*;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-// TODO: restore set<Plushie> when setting up all fields for use in MySQL with annotations and relations.
+// TODO: restore List<Plushie> when setting up all fields for use in MySQL with annotations and relations.
 // TODO: restore profilephoto later, got too many errors trying to use it this early
 
     private List<Plushie> plushies;
@@ -59,19 +60,20 @@ public class User {
         this.password = password;
     }
 
-    public Set<Plushie> getPlushies() {
+    public List<Plushie> getPlushies() {
         return plushies;
     }
 
-    public void setPlushies(Set<Plushie> plushies) {
+    public void setPlushies(List<Plushie> plushies) {
         this.plushies = plushies;
     }
 
-    public byte[] getPhoto() {
-        return profilephoto;
-    }
+//    public byte[] getPhoto() {
+//        return profilephoto;
+//    }
+//
+//    public void setPhoto(byte[] profilephoto) {
+//        this.profilephoto = profilephoto;
+//    }
 
-    public void setPhoto(byte[] profilephoto) {
-        this.profilephoto = profilephoto;
-    }
 }
