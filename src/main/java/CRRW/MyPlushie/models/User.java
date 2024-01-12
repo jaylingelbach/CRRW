@@ -9,14 +9,14 @@ import java.util.Set;
 //@Table(name = "user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+//    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String password;
 
 // TODO: restore List<Plushie> when setting up all fields for use in MySQL with annotations and relations.

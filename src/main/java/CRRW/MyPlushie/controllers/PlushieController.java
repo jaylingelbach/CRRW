@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +25,19 @@ public class PlushieController {
     }
 
     // Create a new plushie
-//    TODO: create the following missing methods in this file: generateId(), findPlushieById()
     @PostMapping
     public ResponseEntity<Plushie> createPlushie(@RequestBody Plushie plushie) {
-        plushie.setId(generateId());
+
+//        DONE: removed generateId method call, no need for this when plushies already make their own ids
         plushies.add(plushie);
         return new ResponseEntity<>(plushie, HttpStatus.CREATED);
     }
 
     // Update a plushie by ID
-    @PutMapping("/{id}")
+    @PutMapping("/{id}")  // {id} refers to the ID that we want to change. if my plushie has an id of 25, then the mapping
+                          //is going to "/plushies/25", "/plushies" comes from the fact that this is like a branch off
+                          // from "/plushies" on line 16
+
     public ResponseEntity<Plushie> updatePlushie(@PathVariable Long id, @RequestBody Plushie updatedPlushie) {
         Plushie existingPlushie = findPlushieById(id);
         if (existingPlushie != null) {
@@ -104,5 +106,13 @@ public class PlushieController {
     @GetMapping("/sorted/byemblem")
     public List<Plushie> getPlushiesSortedByEmblem() {
         return plushieService.getPlushiesSortedByEmblem();
+    }
+
+
+    //method that finds a plushie by Id
+    private Plushie findPlushieById(Long id) {
+        //this actually is using the dedicated get plushie by id. no need to make another method that does the same thing
+        // in this file when we can just call
+        return plushieService.getPlushieById(id).orElse(null);
     }
 }

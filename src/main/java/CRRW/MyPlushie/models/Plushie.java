@@ -12,18 +12,18 @@ public class Plushie {
     private Date dateAdopted;
     private String purchaseLink;
 
-    // Constructors, getters, and setters
-    //...
-
-
+    // plushie auto-generates it's own id, so no need to make a method for this,
+    // that's what the code on lines 21-22 are doing for us
 
     @Id
     @GeneratedValue
-
     private Long id;
 
     private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
     private Integer zipcode;
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")  // Adjust the column name accordingly
     private User user;
 
     //blank constructor

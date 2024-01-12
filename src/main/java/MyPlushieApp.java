@@ -6,5 +6,7 @@ public class MyPlushieApp {
     public static void main(String[] args) {
         SpringApplication.run(MyPlushieApp.class, args);
     }
+
+
 }
 

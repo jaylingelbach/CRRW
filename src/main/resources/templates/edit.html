@@ -13,7 +13,6 @@
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Price</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -23,9 +22,9 @@
         <td th:text="${plushie.id}"></td>
         <td th:text="${plushie.name}"></td>
         <td th:text="${plushie.description}"></td>
-        <td th:text="${plushie.price}"></td>
         <td>
             <!-- Edit button -->
+<!--a plushie with an id of 25 would be translated into "/plushies/edit/25"-->
             <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a>
 
             <!-- Delete button -->

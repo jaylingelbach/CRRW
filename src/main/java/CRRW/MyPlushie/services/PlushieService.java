@@ -1,10 +1,9 @@
 package CRRW.MyPlushie.services;
-//PlushieService.java (Service)
 
 import CRRW.MyPlushie.models.Plushie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.PlushieRepository;
+import CRRW.MyPlushie.repositories.PlushieRepository;
 
 import java.util.*;
 @Service
