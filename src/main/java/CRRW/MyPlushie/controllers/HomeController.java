@@ -1,11 +1,22 @@
 package CRRW.MyPlushie.controllers;
 
+import CRRW.MyPlushie.models.User;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import CRRW.MyPlushie.services.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 public class HomeController {
@@ -28,8 +39,82 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/start-logout")
+    public String startLogout(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/login?logout";
+    }
+
+    @GetMapping("/editaccount")
+    public String showEditAccountForm(Model model) {
+
+        // takes user to the accountManagement.html view
+        return "accountManagement";
+    }
+    @PostMapping("/delete-account")
+    public String deleteAccount(Authentication authentication, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+
+        // Get the authenticated user
+        User authenticatedUser = (User) authentication.getPrincipal();
+
+        // Call the deleteUser method in UserService, which sends back a boolean
+        boolean deletionResult = userService.deleteUser(getCurrentUserId());
+
+        if (deletionResult) {
+            System.out.println("ACCOUNT DELETION IS GREAT SUCCESS");
+            return "redirect:/start-logout";
+        } else {
+            // Deletion failed, handle accordingly
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to delete user");
+            return "redirect:/";
+        }
+    }
+    @PostMapping("/update-profile")
+    public String updateProfile(@RequestParam("new-username") String newUsername,
+                                @RequestParam("new-password") String newPassword,
+                                RedirectAttributes redirectAttributes) {
+
+        // Get the user ID from your authentication context or wherever it's stored
+        Long userId = getCurrentUserId();
+
+        // Call the updateUser method in the UserService and give it the new username and passwords from the form
+        boolean updateSuccessful = userService.updateUser(newUsername, newPassword);
+
+        if (updateSuccessful) {
+            // Profile updated successfully
+            redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully!");
+        } else {
+            // User with the specified ID not found
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to update profile. User not found.");
+        }
+
+        return "redirect:/";
+    }
+
+
+    // This method should return the current user's ID from your authentication context
+    private Long getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // Check if the user is authenticated
+        if (authentication != null && authentication.isAuthenticated()) {
+            // The principal should be an instance of your UserDetails implementation
+            // Assuming your UserDetails class has a method getId()
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof User) {
+                return ((User) principal).getId();
+            }
+        }
+
+        // Return null or throw an exception if unable to determine the user ID
+        return null;
+    }
+
 //    @GetMapping("/addPal") //uses addPal.html
 //    public String addPal() {
 //        return "redirect:/";
 //    }
+
+
 }

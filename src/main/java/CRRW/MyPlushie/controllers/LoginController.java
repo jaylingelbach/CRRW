@@ -19,11 +19,13 @@ public class LoginController {
     }
 
 
+//    this takes the user to the creatAccount.html view
     @GetMapping("/createAccount")
     public String createAccount() {
         return "createAccount"; // takes the user to createAccount.html
     }
 
+//    this is whenthe user actually submits the form
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password) {
         System.out.println("Made it to /register! attempting to register " + username + " with the password: " + password);
@@ -33,9 +35,6 @@ public class LoginController {
 
         if (!registrationSuccessful) {
             // Registration failed, don't redirect
-
-            // can add extra logic to tell user why the registration didn't work
-
             return "/createAccount";
         }
         // Handle user registration logic

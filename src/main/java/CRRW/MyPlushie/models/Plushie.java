@@ -14,7 +14,6 @@ public class Plushie {
     private Integer zipcode;
     private User user;
     private String purchaseLink;
-    private Set<Category> categories;
 
 //    blank constructor
     public Plushie(){}
@@ -22,7 +21,7 @@ public class Plushie {
 
     // TODO: finish contructor and get/set stuff
 
-    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink, Set<Category> categories) {
+    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink) {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
@@ -30,7 +29,6 @@ public class Plushie {
         this.zipcode = zipcode;
         this.user = user;
         this.purchaseLink = purchaseLink;
-        this.categories = categories;
     }
 
     public Long getId() {
@@ -89,11 +87,4 @@ public class Plushie {
         this.purchaseLink = purchaseLink;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 }

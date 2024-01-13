@@ -192,20 +192,23 @@
 
     <div class="spacer"></div>
 
+    <a th:href="@{/editaccount}">
     <button style="height: 35px;" class="edit-button"> <img style="height: 15px;"src="/images/button_edit.png" alt="Edit Plushie"></button>
+    </a>
 
     <div style="width: 7px"></div>
 
-    <button style="height: 35px; padding-left: 15px; padding-right: 15px" class="logout-button"> Logout</button>
 
+
+    <a th:href="@{/start-logout}">
+        <button style="height: 35px; padding-left: 15px; padding-right: 15px" class="logout-button" onclick="logoutUser()">Logout</button>
+    </a>
+
+
+<!--spacer needed due to some issues with the CSS, IntelliJ likes to be silly sometimes-->
     <div style="width: 25px"></div>
 </div>
 
-
-
-
-<!--<form id="logoutForm" action="/logout" method="post">-->
-<!--</form>-->
 
 <div class="main-container">
     <h1 class="welcome-message" th:text="'Welcome ' + ${username} + '!'"></h1>
@@ -221,9 +224,10 @@
         <div class="button-column">
 
 
-            <a th:href="@{/addPal}">
+<!--            <a th:href="@{/addPal}">-->
                 <button class="add-pal-button" name="addPalButton">Add Pal</button>
-            </a>
+<!--            </a>-->
+
 <!--            <p th:text="0 Pals"></p>-->
         </div>
     </div>
@@ -244,7 +248,8 @@
     </div>
 
 
-<!--    Single example hardcoded plushie box, will automatically create these when given list that belong to user-->
+<!--    Single example hardcoded plushie box, will automatically create these when given list of plushies
+that belong to user-->
     <div class="plushie-box">
         <div class="plushie-box-column1">
             <img class=user-image th:src="@{/images/userPfpTest.png}" alt="Plushie Photo">
@@ -295,15 +300,22 @@
 
                 <div class="spacer"></div>
 
-                <a th:href="@{/editPlushie}">
+<!--                <a th:href="@{/editPlushie}">-->
+
                     <button style="margin-right: 8px" class="edit-button"> <img style="width: 20px; height: 20px;" src="/images/button_edit.png" alt="Edit Plushie"></button>
-                </a>
+
+                <!--                </a>-->
 
                     <button class="delete-button"> <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete (insert plushie name here)??')" alt="Delete Plushie"></button>
 
             </div>
 
  </div>
+
+<!--        adds extra space after all generated plushie boxes have been added-->
+        <div style="margin-top: 75px;">
+
+        </div>
 
 
 

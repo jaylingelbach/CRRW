@@ -1,8 +1,5 @@
 package CRRW.MyPlushie.models;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -18,21 +15,19 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-// TODO: restore set<Plushie> when setting up all fields for use in MySQL with annotations and relations.
-// TODO: restore profilephoto later, got too many errors trying to use it this early
-
 //    private Set<Plushie> plushies;
 //
-//    private byte[] profilephoto; // we can store the binary data of the image, making it easier to store in MySQL.
+//    @Lob
+//    private byte[] profilePicture; // we can store the binary data of the image, making it easier to store in MySQL.
     
 
     public User(){}     //blank constructor
-    public User(Long id, String username, String password/*, Set<Plushie> plushies*/  /*, byte[] profilephoto*/) {
+    public User(Long id, String username, String password/*, Set<Plushie> plushies*/  /* , byte[] profilePicture */) {
         this.id = id;
         this.username = username;
         this.password = password;
         //this.plushies = plushies;
-//        this.profilephoto = profilephoto;
+//        this.profilePicture = profilePicture;
     }
 
     public Long getId() {
@@ -66,12 +61,11 @@ public class User {
 //    public void setPlushies(Set<Plushie> plushies) {
 //        this.plushies = plushies;
 //    }
-
-//    public byte[] getPhoto() {
-//        return profilephoto;
+//    public byte[] getProfilePicture() {
+//        return profilePicture;
 //    }
 //
-//    public void setPhoto(byte[] profilephoto) {
-//        this.profilephoto = profilephoto;
+//    public void setProfilePicture(byte[] profilePicture) {
+//        this.profilePicture = profilePicture;
 //    }
 }

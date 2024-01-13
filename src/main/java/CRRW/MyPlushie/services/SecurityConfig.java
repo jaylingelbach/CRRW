@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
 
 //                pages the user can access without needing to be logged in
-                .antMatchers("/login", "/images/**", "/createAccount", "/register").permitAll()
+                .antMatchers("/login", "/images/**", "/createAccount", "/register", "/logout").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .logoutUrl("/logout")  // The URL to trigger logout
-                .logoutSuccessUrl("/login")  // Redirect to this URL after successful logout
+                .logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true)  // Invalidate the HTTP session
                 .deleteCookies("JSESSIONID")  // Delete cookies, if any
 //                .permitAll() // Permit all for logout

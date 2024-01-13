@@ -71,6 +71,18 @@
         transition: border-color 0.3s ease;
         }
 
+        .profile-picture input {
+
+        flex-end: 1;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 8px;
+        margin-left: 20px;
+        border: 3px solid #8792AD;
+        border-radius: 6px;
+        transition: border-color 0.3s ease;
+        }
+
         .form-row-container input:focus {
             border-color: #35424A;
         }
@@ -110,7 +122,7 @@ Button:hover {
 
 <h1>Manage Your Account</h1>
 
-<form action="/manage-account" method="post">
+<form action="/update-profile" method="post" enctype="multipart/form-data">
     <div class="form-row-container">
         <label for="new-username">New Username</label>
         <input type="text" id="new-username" name="new-username" required>
@@ -119,11 +131,16 @@ Button:hover {
         <label for="new-password">New Password</label>
         <input type="password" id="new-password" name="new-password" required>
     </div>
+
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <button type="submit">Update Account</button>
 </form>
 
-<form action="/delete-account" method="post">
+<form action="/delete-account" method="post" th:action="@{/delete-account}">
+
+    <!-- Includes CSRF token -->
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
     <button type="submit" class="delete-button" onclick="return confirm('WAIT!! You really want to delete your account??')">Delete Account</button>
 </form>
 
