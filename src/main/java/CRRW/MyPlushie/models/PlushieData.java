@@ -53,9 +53,7 @@ public class PlushieData {
             } else if (plushie.getEmblem().toString().toLowerCase().contains(value.toLowerCase())) {
                 results.add(plushie);
             }
-            //else if (plushie.getSkills().toString().toLowerCase().contains(value.toLowerCase())) {
-            //    results.add(job);
-            //}
+
 
         }
 
