@@ -3,6 +3,7 @@ package CRRW.MyPlushie.models;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
 @ Entity
@@ -17,6 +18,8 @@ public class Plushie {
 
     private String name;
     private Emblem emblem;
+    private String description;
+    private Date dateAdopted;
     private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
     private Integer zipcode;
 
@@ -35,11 +38,13 @@ public class Plushie {
     // TODO: finish constructor and get/set stuff
     // TODO: include categories
 
-    public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink)
+    public Plushie(Long id, String name, Emblem emblem, String description, Date dateAdopted, byte[] photo, Integer zipcode, User user, String purchaseLink)
     {
         this.id = id;
         this.name = name;
         this.emblem = emblem;
+        this.description = description;
+        this.dateAdopted = dateAdopted;
         this.photo = photo;
         this.zipcode = zipcode;
         this.user = user;
@@ -66,6 +71,24 @@ public class Plushie {
     public void setEmblem(Emblem emblem) {
         this.emblem = emblem;
     }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDateAdopted() {
+        return dateAdopted;
+    }
+
+    public void setDateAdopted(Date dateAdopted) {
+        this.dateAdopted = dateAdopted;
+    }
+
 
     public byte[] getPhoto() {
         return photo;
@@ -101,3 +124,4 @@ public class Plushie {
 
 
 }
+
