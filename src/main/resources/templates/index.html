@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/plushiebox.css">
     <title>MyPlushie</title>
     <style>
         body {
@@ -14,13 +16,52 @@
             margin: 0;
         }
 
+        .top-bar {
+    width: 100%;
+    display: flex;
+    margin-top: 10px; /* Adjust the margin as needed */
+    align-items: center;
+    position: fixed;
+        }
+
+
+
+               /* General button styles */
+       button {
+       border: 3px solid #8172BA;
+       padding: 8px 32px;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+       font-weight: 700;
+       }
+
+       Button:hover {
+       transform: scale(1.15);
+       }
+
+          .logout-button{
+        background-color: #A095EF;
+        padding: 6px;
+        color: white;
+        border: 3px solid #8172BA;
+        border-radius: 20px;
+        font-weight: bold;
+   }
+   .search-button{
+        background-color: #A095EF;
+        padding: 6px;
+        color: blue;
+        border: 3px solid #8172BA;
+        border-radius: 20px;
+        font-weight: bold;
+   }
+
 
         .logo {
-            position: fixed;
-            width: 150px;
+            width: 200px;
             height: auto;
-            top: 15px;
-            left: 15px;
+    padding-left: 25px;
         }
 
         .welcome-message {
@@ -28,37 +69,265 @@
             margin-top: 50px; /* Adjust top margin */
         }
 
-        .logout-button {
-            position: fixed;
-            top: 10px; /* Adjust top position */
-            right: 10px; /* Adjust right position */
-            background-color: #A095EF;
-            padding: 8px 16px;
-            color: white;
-            border: 3px solid #8172BA;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
 
         .main-container {
-    width: 500px;
+    width: 600px;
+    }
+
+    .user-info-box {
+    display: flex;
+    padding: 15px; /* half of the padding for the plushie columns*/
 }
-    </style>
+
+    .user-column {
+    width: 175px;
+    text-align: center;
+}
+
+    .user-image{
+    width: 150px;
+        height: 150px;
+    object-fit: cover;
+    border-radius: 15%; /* Optional: for a circular image */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally within the user column */
+    }
+
+
+    .button-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 10px; /* Adjust the margin as needed to create space from the user column */
+    }
+
+    .add-pal-button {
+   background-color: #00FF7F;
+   border: 3px solid #00D16D;
+   color: black;
+   margin-top: 65px;
+
+}
+
+/*--SORT BY ROW STUFF */
+/*--SORT BY ROW STUFF */
+
+.sort-by-row {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-top: 10px; /* Adjust the margin as needed */
+    align-items: center;
+    }
+
+.sort-by-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.sort-by-text {
+    margin-right: 10px;
+    color: #8792AD;
+}
+
+.dropdown-container {
+    border: 3px solid #8792AD; /* Border around the dropdown container */
+    border-radius: 7px; /* Rounded corners */
+    width: 150px;
+    overflow: hidden; /* Hide overflow to prevent stretching */
+    display: flex;
+}
+
+.sort-dropdown {
+    width: 100%; /* Make the dropdown fill the container */
+    border: none; /* Remove the border from the dropdown */
+    padding: 5px;
+    outline: none;
+    text-align: center;
+    background-color: white; /* Optional: Set background color to match the page */
+}
+
+    .spacer {
+    flex-grow: 1; /* The spacer takes up available space and pushes other elements to the right */
+}
+
+    /*--PLUSHIE BOX STUFF */
+    /*--PLUSHIE BOX STUFF  */
+
+    .plushie-box {
+    /* background-color: red; */
+    display: flex;
+    font-weight: 700;
+    border: 3px solid #D0D9EA; /* Border around the dropdown container */
+    border-radius: 20px;
+    }
+
+    .plushie-box-column1 {
+    /* background-color: yellow; */
+    padding: 30px;
+    text-align: center;
+    }
+
+    .plushie-box-column2 {
+    width: 90%;
+    }
+
+    .edit-button {
+   background-color: #FFC466;
+   border: 3px solid #E09F36;
+   padding: 6px;
+   padding-left: 15px;
+   padding-right: 15px;
+}
+
+   .delete-button {
+   background-color: #FF719A;
+   border: 3px solid #F4406B;
+   padding: 6px;
+   padding-left: 15px;
+   padding-right: 15px;
+}
+
+
+   </style>
 </head>
 <body>
-<img th:src="@{/images/myplushielogo.png}" class="logo" alt="My Plushie App Logo">
+<div class="top-bar">
+    <img th:src="@{/images/myplushielogo.png}" class="logo" alt="My Plushie App Logo">
 
-<!--<form id="logoutForm" action="/logout" method="post">-->
-<!--    <button class="logout-button" type="submit">Logout</button>-->
-<!--</form>-->
+    <div class="spacer"></div>
+
+    <a th:href="@{/editaccount}">
+        <button style="height: 35px;" class="edit-button"> <img style="height: 15px;"src="/images/button_edit.png" alt="Edit Plushie"></button>
+    </a>
+    <a th:href="@{/search}">
+        <button style="height: 35px;" class="search-button"> <img style="height: 15px;"src="/images/button_search.png" alt="Search Plushie"></button>
+    </a>
+    <div style="width: 7px"></div>
+
+
+
+    <a th:href="@{/start-logout}">
+        <button style="height: 35px; padding-left: 15px; padding-right: 15px" class="logout-button" onclick="logoutUser()">Logout</button>
+    </a>
+
+
+    <!--spacer needed due to some issues with the CSS, IntelliJ likes to be silly sometimes-->
+    <div style="width: 25px"></div>
+</div>
+
 
 <div class="main-container">
     <h1 class="welcome-message" th:text="'Welcome ' + ${username} + '!'"></h1>
-</div>
 
+    <div class="user-info-box">
+        <!-- First Column: Photo and Username -->
+        <div class="user-column">
+            <img class=user-image th:src="@{/images/userPfpTest.png}" alt="User Photo">
+            <h3 th:text="${username}"></h3>
+        </div>
+
+        <!--         Second Column:-->
+        <div class="button-column">
+
+
+            <!--            <a th:href="@{/addPal}">-->
+            <button class="add-pal-button" name="addPalButton">Add Pal</button>
+            <!--            </a>-->
+
+            <!--            <p th:text="0 Pals"></p>-->
+        </div>
+    </div>
+
+    <!--    SORT BY ROW-->
+    <div class="sort-by-row">
+        <div class="sort-by-container">
+            <div class="spacer"></div>
+            <span class="sort-by-text">Sort By</span>
+            <div class="dropdown-container">
+                <select class="sort-dropdown">
+                    <option value="name">Name</option>
+                    <option value="date">Date</option>
+                    <option value="emblem">Emblem</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <!--    Single example hardcoded plushie box, will automatically create these when given list of plushies
+    that belong to user-->
+    <div class="plushie-box">
+        <div class="plushie-box-column1">
+            <img class=user-image th:src="@{/images/userPfpTest.png}" alt="Plushie Photo">
+            <h3 style="margin-bottom: 0px;"> Test Plushie </h3>
+
+        </div>
+
+        <!--        column 2-->
+        <div class="plushie-box-column2">
+
+            <!--            column 2 row TOP-->
+            <div style="display:flex; /* background-color: green; */ height: 70px;
+    align-items: center; padding-left: 15px; padding-right: 15px;" >
+                <!--            adopted box-->
+                <div style="text-align: center; line-height: 0.3; ">
+                    <p style="font-size: 13px">Adopted</p>
+                    <p>06/18/2021</p>
+
+                </div>
+                <!--                emblem box-->
+                <div style="padding-left: 15px;">
+                    <img style="width: 50px; height: 50px;" src="/images/emblems/emblem-blue.png" height="200" width="200"/>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!--                    Buy Me Link, will be hidden if no link is provided by this plushie-->
+                <div style="display: flex; height: 70px; align-items: center;">
+                    <div style="margin-left: auto">
+                        <a href="https://www.amazon.com/gp/product/B08241CJN9" target="_blank" >Buy Me Here!!</a>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--            column 2 ROW 2-->
+            <div style="display:flex; /* background-color: grey; */
+ padding-left: 15px; padding-right: 15px; padding-bottom: 15px" >
+                While online shopping at my dad's place at the Lake of
+                the Ozarks, my girlfriend and I came across this hilarious
+                looking seal on Amazon. We got him and he arrived just
+                a few days later. Today, he's a favorite in the collection.
+            </div>
+
+            <!--            column 2 ROW 3-->
+            <div style="display:flex; /* background-color: green; */ height: 30px;
+    align-items: center; padding-left: 15px; padding-right: 15px;">
+
+                <div class="spacer"></div>
+
+                <!--                <a th:href="@{/editPlushie}">-->
+
+                <button style="margin-right: 8px" class="edit-button"> <img style="width: 20px; height: 20px;" src="/images/button_edit.png" alt="Edit Plushie"></button>
+
+                <!--                </a>-->
+
+                <button class="delete-button"> <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete (insert plushie name here)??')" alt="Delete Plushie"></button>
+
+            </div>
+
+        </div>
+
+        <!--        adds extra space after all generated plushie boxes have been added-->
+        <div style="margin-top: 75px;">
+
+        </div>
 
 
 
 </body>
+
 </html>

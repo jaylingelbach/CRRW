@@ -3,20 +3,20 @@ package CRRW.MyPlushie.models;
 import java.util.ArrayList;
 
 public class PlushieData {
-    public static ArrayList<Plushie> findByColumnAndValue(String column, String value, Iterable<Plushie> allplushies) {
+    public static ArrayList<Plushie> findByColumnAndValue(String column, String value, Iterable<Plushie> allPlushies) {
 
 
         ArrayList<Plushie> results = new ArrayList<>();
 
         if (value.toLowerCase().equals("all")) {
-            return (ArrayList<Plushie>) allplushies;
+            return (ArrayList<Plushie>) allPlushies;
         }
 
         if (column.equals("all")) {
-            results = findByValue(value, allplushies);
+            results = findByValue(value, allPlushies);
             return results;
         }
-        for (Plushie plushie : allplushies) {
+        for (Plushie plushie : allPlushies) {
 
             String aValue = getFieldValue(plushie, column);
 

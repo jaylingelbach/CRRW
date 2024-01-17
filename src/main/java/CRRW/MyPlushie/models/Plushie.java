@@ -1,5 +1,7 @@
 package CRRW.MyPlushie.models;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,6 +11,9 @@ public class Plushie {
     @Id
     @GeneratedValue
     private Long id;
+
+
+
 
     private String name;
     private Emblem emblem;

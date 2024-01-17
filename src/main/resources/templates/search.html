@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments :: head}">
+
+    </head>
+
+<body>
+
+<div th:replace="~{fragments :: page-header}"></div>
+<!--div class="top-bar">
+    <img th:src="@{/images/myplushielogo.png}" class="logo" alt="My Plushie App Logo">
+
+    <div class="spacer"></div>
+
+    <a th:href="@{/editaccount}">
+        <button style="height: 35px;" class="edit-button"> <img style="height: 15px;"src="/images/button_edit.png" alt="Edit Plushie"></button>
+    </a>
+    <div style="width: 25px"></div>
+    <a th:href="@{/search}">
+        <button style="height: 35px;" class="search-button"> <img style="height: 15px;"src="/images/button_search.png" alt="Search Plushie"></button>
+    </a>
+    <div style="width: 25px"></div>
+</div-->
+<div class="main-container">
+    <h1 class="welcome-message" th:text="'Hi !'"></h1>
+<form th:action="@{/search/results}" method = "post">
+    <h2>Do You want to Search the plushies by:</h2>
+
+    <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+    </p>
+
+    <p>
+        <label for="searchTerm">Keyword:</label>
+        <input type="text" name="searchTerm" id="searchTerm" />
+    </p>
+
+    <input type="submit" value="Search" />
+</form>
+
+    <table class="plushie-listing">
+        <tr th:each="plushie : ${plushies}">
+            <td>
+                <p>
+                    Plushie Id:
+                    <a th:href="@{'/view/' + ${plushie.id}}" th:text="${plushie.id}"></a>
+                </p>
+                <p
+
+                        th:text="${'Name: ' + plushie.name}"></p>
+                <p>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+</div>
+</head>
+</body>
+</html>
+
+#
