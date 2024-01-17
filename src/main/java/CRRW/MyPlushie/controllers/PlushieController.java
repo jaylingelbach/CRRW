@@ -33,7 +33,8 @@ public class PlushieController {
     }
 
     // Update a plushie by ID
-    @PutMapping("/{id}")  // {id} refers to the ID that we want to change. if my plushie has an id of 25, then the mapping
+    @PutMapping("/{id}")
+    // {id} refers to the ID that we want to change. if my plushie has an id of 25, then the mapping
     //is going to "/plushies/25", "/plushies" comes from the fact that this is like a branch off
     // from "/plushies" on line 16
 
@@ -114,3 +115,4 @@ public class PlushieController {
         // in this file when we can just call
         return plushieService.getPlushieById(id).orElse(null);
     }
+}
