@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Plushies</title>
+</head>
+<body>
+<h2>List of Plushies</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over plushies and display each row -->
+    <tr th:each="plushie : ${plushies}">
+        <td th:text="${plushie.id}"></td>
+        <td th:text="${plushie.name}"></td>
+        <td th:text="${plushie.description}"></td>
+        <td>
+            <!-- Edit button -->
+            <!--a plushie with an id of 25 would be translated into "/plushies/edit/25"-->
+            <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a>
+
+            <!-- Delete button -->
+            <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Link to add a new plushie -->
+<p><a th:href="@{/plushies/add}">Add a new Plushie</a></p>
+</body>
+</html>
