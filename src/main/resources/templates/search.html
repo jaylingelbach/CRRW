@@ -1,14 +1,208 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="~{fragments :: head}">
+    <!--head th:replace="~{fragments :: head}">
 
     </head>
 
 <body>
 
-<div th:replace="~{fragments :: page-header}"></div>
-<!--div class="top-bar">
+<div th:replace="~{fragments :: page-header}"></div-->
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/css/plushiebox.css">
+        <title>MyPlushie</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                font-family: 'Ubuntu', sans-serif;
+                margin: 0;
+            }
+
+            .top-bar {
+        width: 100%;
+        display: flex;
+        margin-top: 10px; /* Adjust the margin as needed */
+        align-items: center;
+        position: fixed;
+            }
+
+
+
+                   /* General button styles */
+           button {
+           border: 3px solid #8172BA;
+           padding: 8px 32px;
+           border-radius: 20px;
+           cursor: pointer;
+           transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+           font-weight: 700;
+           }
+
+           Button:hover {
+           transform: scale(1.15);
+           }
+
+              .logout-button{
+            background-color: #A095EF;
+            padding: 6px;
+            color: white;
+            border: 3px solid #8172BA;
+            border-radius: 20px;
+            font-weight: bold;
+       }
+       .search-button{
+            background-color: #A095EF;
+            padding: 6px;
+            color: blue;
+            border: 3px solid #8172BA;
+            border-radius: 20px;
+            font-weight: bold;
+       }
+
+
+            .logo {
+                width: 200px;
+                height: auto;
+        padding-left: 25px;
+            }
+
+            .welcome-message {
+                text-align: center;
+                margin-top: 50px; /* Adjust top margin */
+            }
+
+
+            .main-container {
+        width: 600px;
+        }
+
+        .user-info-box {
+        display: flex;
+        padding: 15px; /* half of the padding for the plushie columns*/
+    }
+
+        .user-column {
+        width: 175px;
+        text-align: center;
+    }
+
+        .user-image{
+        width: 150px;
+            height: 150px;
+        object-fit: cover;
+        border-radius: 15%; /* Optional: for a circular image */
+        display: block;
+        margin: 0 auto; /* Center the image horizontally within the user column */
+        }
+
+
+        .button-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: 10px; /* Adjust the margin as needed to create space from the user column */
+        }
+
+        .add-pal-button {
+       background-color: #00FF7F;
+       border: 3px solid #00D16D;
+       color: black;
+       margin-top: 65px;
+
+    }
+
+    /*--SORT BY ROW STUFF */
+    /*--SORT BY ROW STUFF */
+
+    .sort-by-row {
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        margin-top: 10px; /* Adjust the margin as needed */
+        align-items: center;
+        }
+
+    .sort-by-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .sort-by-text {
+        margin-right: 10px;
+        color: #8792AD;
+    }
+
+    .dropdown-container {
+        border: 3px solid #8792AD; /* Border around the dropdown container */
+        border-radius: 7px; /* Rounded corners */
+        width: 150px;
+        overflow: hidden; /* Hide overflow to prevent stretching */
+        display: flex;
+    }
+
+    .sort-dropdown {
+        width: 100%; /* Make the dropdown fill the container */
+        border: none; /* Remove the border from the dropdown */
+        padding: 5px;
+        outline: none;
+        text-align: center;
+        background-color: white; /* Optional: Set background color to match the page */
+    }
+
+        .spacer {
+        flex-grow: 1; /* The spacer takes up available space and pushes other elements to the right */
+    }
+
+        /*--PLUSHIE BOX STUFF */
+        /*--PLUSHIE BOX STUFF  */
+
+        .plushie-box {
+        /* background-color: red; */
+        display: flex;
+        font-weight: 700;
+        border: 3px solid #D0D9EA; /* Border around the dropdown container */
+        border-radius: 20px;
+        }
+
+        .plushie-box-column1 {
+        /* background-color: yellow; */
+        padding: 30px;
+        text-align: center;
+        }
+
+        .plushie-box-column2 {
+        width: 90%;
+        }
+
+        .edit-button {
+       background-color: #FFC466;
+       border: 3px solid #E09F36;
+       padding: 6px;
+       padding-left: 15px;
+       padding-right: 15px;
+    }
+
+       .delete-button {
+       background-color: #FF719A;
+       border: 3px solid #F4406B;
+       padding: 6px;
+       padding-left: 15px;
+       padding-right: 15px;
+    }
+
+
+        </style>
+        </head>
+<body>
+<div class="top-bar">
     <img th:src="@{/images/myplushielogo.png}" class="logo" alt="My Plushie App Logo">
 
     <div class="spacer"></div>
@@ -21,7 +215,8 @@
         <button style="height: 35px;" class="search-button"> <img style="height: 15px;"src="/images/button_search.png" alt="Search Plushie"></button>
     </a>
     <div style="width: 25px"></div>
-</div-->
+</div>
+
 <div class="main-container">
     <h1 class="welcome-message" th:text="'Hi !'"></h1>
 <form th:action="@{/search/results}" method = "post">
@@ -48,21 +243,18 @@
     <input type="submit" value="Search" />
 </form>
 
-    <table class="plushie-listing">
-        <tr th:each="plushie : ${plushies}">
-            <td>
-                <p>
-                    Plushie Id:
-                    <a th:href="@{'/view/' + ${plushie.id}}" th:text="${plushie.id}"></a>
-                </p>
-                <p
+    <h2>Search Results</h2>
 
-                        th:text="${'Name: ' + plushie.name}"></p>
-                <p>
-
-            </td>
-        </tr>
-    </table>
+    <ul>
+        <li th:each="plushie : ${plushies}">
+            <p>Name:<span th:text="${plushie.name}"></span></p>
+            <p>Emblem: <span th:text="${plushie.emblem.name()}"></span></p>
+            <p>Description: <span th:text="${plushie.description}"></span></p>
+            <p>Date: <span th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></span></p>
+            <p>Photo:<img th:src="${plushie.photo}" alt="Photo"/></p>
+            <p>Zipcode: <span th:text="${plushie.zipcode}"></span></p>
+        </li>
+    </ul>
 
 </div>
 </div>

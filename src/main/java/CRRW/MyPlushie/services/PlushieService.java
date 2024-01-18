@@ -12,6 +12,7 @@ import java.util.*;
 public class PlushieService {
     @Autowired
     private PlushieRepository plushieRepository;
+    private List<Plushie> plushies = new ArrayList<>();
 
     public List<Plushie> getAllPlushies() {
         return plushieRepository.findAll();

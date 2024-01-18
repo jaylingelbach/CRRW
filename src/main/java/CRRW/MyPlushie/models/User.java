@@ -18,8 +18,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-// TODO: restore set<Plushie> when setting up all fields for use in MySQL with annotations and relations.
-// TODO: restore profilephoto later, got too many errors trying to use it this early
+
 
     @OneToMany
     @JoinColumn (name= "user_id")
@@ -70,11 +69,11 @@ public class User {
         this.plushies = plushies;
     }
 
-//    public byte[] getPhoto() {
-//        return profilephoto;
-//    }
+ //   public byte[] getPhoto() {
+ //       return profilephoto;
+//   }
 //
 //    public void setPhoto(byte[] profilephoto) {
-//        this.profilephoto = profilephoto;
-//    }
+ //       this.profilephoto = profilephoto;
+ //  }
 }

@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Controller
@@ -41,11 +44,17 @@ public class SearchController {
 
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
-        Iterable<Plushie> plushies;
+        //Iterable<Plushie> plushies;
+        List<Plushie> plushies = new ArrayList<>();
+        try{
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             plushies = plushieRepository.findAll();
         } else {
             plushies = PlushieData.findByColumnAndValue(searchType, searchTerm, plushieRepository.findAll());
+        }
+        }
+        catch(Exception ex){
+            String str = ex.getMessage();
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("Hi", "Plushies with " + columnChoices.get(searchTerm) + ": " + searchTerm);

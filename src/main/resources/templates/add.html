@@ -2,21 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Plushie</title>
+    <title>Add Plushie Form</title>
 </head>
 <body>
 <h2>Add Plushie</h2>
 
-<form th:action="@{/plushies/add}" th:object="${plushie}" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}" required>
 
+<form th:action="@{/api/plushies}" th:object="${plushie}" method="post">
+    <label for="name">Plushie Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required/>
+    <br/>
+    <label for="emblem">Emblem:</label>
+    <input type="text" id="emblem" name="emblem" th:field="*{emblem}" required/>
+    <br/>
     <label for="description">Description:</label>
     <textarea id="description" name="description" th:field="*{description}" required></textarea>
+    <br/>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" th:field="*{dateAdopted}" required/>
+    <br/>
+    <label for="photo">Photo:</label>
+    <input type="file" id="photo" name="photo" accept="image/*"/>
+    <br/>
+    <label for="zipcode">Zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode" th:field="*{zipcode}" required/>
+    <br/>
+    <button type="submit">Save Table</button>
+</form>
+
+</body>
+</html>
+
+<!--form th:action="@{/plushies/add}" th:object="${plushie}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="${plushie.name}" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" th:field="${plushie.description}" required></textarea>
 
     <button type="submit">Add Plushie</button>
 
 
-</form>
+</form-->
 </body>
 </html>
