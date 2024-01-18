@@ -30,9 +30,11 @@ public class HomeController {
 
         if (authentication != null && authentication.isAuthenticated()) {
 
-           String username = authentication.getName();
-
-            model.addAttribute("username", username);
+//           String username = authentication.getName();
+           User user = (User) authentication.getPrincipal();
+//           add in here number of pals user has already
+            model.addAttribute("username", user.getUsername());
+            model.addAttribute("description", user.getDescription());
             return "index";
         } else {
             return "redirect:/login";
@@ -74,13 +76,14 @@ public class HomeController {
     @PostMapping("/update-profile")
     public String updateProfile(@RequestParam("new-username") String newUsername,
                                 @RequestParam("new-password") String newPassword,
+                                @RequestParam("description") String newDescription,
                                 RedirectAttributes redirectAttributes) {
 
         // Get the user ID from your authentication context or wherever it's stored
         Long userId = getCurrentUserId();
 
         // Call the updateUser method in the UserService and give it the new username and passwords from the form
-        boolean updateSuccessful = userService.updateUser(newUsername, newPassword);
+        boolean updateSuccessful = userService.updateUser(newUsername, newPassword, newDescription);
 
         if (updateSuccessful) {
             // Profile updated successfully

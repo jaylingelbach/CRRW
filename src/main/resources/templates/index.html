@@ -94,8 +94,8 @@
    background-color: #00FF7F;
    border: 3px solid #00D16D;
    color: black;
-   margin-top: 65px;
-
+   width: 120px;
+<!--   margin-top: 65px;-->
 }
 
 /*--SORT BY ROW STUFF */
@@ -179,9 +179,6 @@
    padding-right: 15px;
 }
 
-
-
-
     </style>
 </head>
 <body>
@@ -221,6 +218,8 @@
 <!--         Second Column:-->
         <div class="button-column">
 
+<!--                Description for user-->
+            <p th:text="${description}"></p>
 
 <!--            <a th:href="@{/addPal}">-->
                 <button class="add-pal-button" name="addPalButton">Add Pal</button>

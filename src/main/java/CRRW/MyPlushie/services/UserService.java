@@ -49,7 +49,7 @@ public class UserService {
         return true;
     }
 
-    public boolean updateUser(String newUsername, String newPassword) {
+    public boolean updateUser(String newUsername, String newPassword, String newDescription) {
         // Get the current user's username from the security context
         String currentUsername = getCurrentUsername();
 
@@ -62,6 +62,7 @@ public class UserService {
 
             // Update the user information
             existingUser.setUsername(newUsername);
+            existingUser.setDescription(newDescription);
 
             // Encode the new password if provided
             if (newPassword != null && !newPassword.isEmpty()) {

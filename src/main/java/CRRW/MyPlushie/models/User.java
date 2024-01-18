@@ -19,6 +19,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Column
+    private String description;
+
 //    private Set<Plushie> plushies;
 //
 //    @Lob
@@ -26,10 +29,11 @@ public class User implements UserDetails {
 
 
     public User(){}     //blank constructor
-    public User(Long id, String username, String password/*, Set<Plushie> plushies*/  /* , byte[] profilePicture */) {
+    public User(Long id, String username, String password, String description/*, Set<Plushie> plushies*/  /* , byte[] profilePicture */) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.description = description;
         //this.plushies = plushies;
 //        this.profilePicture = profilePicture;
     }
@@ -89,7 +93,15 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-//    public Set<Plushie> getPlushies() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    //    public Set<Plushie> getPlushies() {
 //        return plushies;
 //    }
 //
