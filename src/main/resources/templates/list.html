@@ -23,14 +23,14 @@
         <td th:text="${plushie.id}"></td>
         <td th:text="${plushie.name}"></td>
         <td th:text="${plushie.description}"></td>
-        <td th:text="${plushie.price}"></td>
-        <td>
-            <!-- Edit button -->
+        <td th:text="${plushie.zipcode}"></td>
+        <!--td>
+            < Edit button >
             <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a>
 
-            <!-- Delete button -->
+            < Delete button >
             <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" onclick="return confirm('Are you sure?')">Delete</a>
-        </td>
+        </td-->
     </tr>
     </tbody>
 </table>
