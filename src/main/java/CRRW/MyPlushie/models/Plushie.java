@@ -18,9 +18,6 @@ public class Plushie {
 //    blank constructor
     public Plushie(){}
 
-
-    // TODO: finish contructor and get/set stuff
-
     public Plushie(Long id, String name, Emblem emblem, byte[] photo, Integer zipcode, User user, String purchaseLink) {
         this.id = id;
         this.name = name;

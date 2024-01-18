@@ -97,17 +97,4 @@ public class UserService {
 
         return null;
     }
-
-//    don't think this is working (below)
-//    public User createUser(User user) {
-//        // Hash the password before storing it
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        return userRepository.save(user);
-//    }
-//
-//    public User getUserByUsername(String username) {
-////        System.out.println("trying to get userByUsername in UserService");
-//        return userRepository.findByUsername(username);
-//
-//    }
 }

@@ -61,7 +61,7 @@ public class HomeController {
         boolean deletionResult = userService.deleteUser(getCurrentUserId());
 
         if (deletionResult) {
-            System.out.println("ACCOUNT DELETION IS GREAT SUCCESS");
+            System.out.println("ACCOUNT DELETION SUCCESSFUL");
             return "redirect:/start-logout";
         } else {
             // Deletion failed, handle accordingly
@@ -69,6 +69,8 @@ public class HomeController {
             return "redirect:/";
         }
     }
+
+//   accepts the new information, saves it, then redirects user to the start-logout
     @PostMapping("/update-profile")
     public String updateProfile(@RequestParam("new-username") String newUsername,
                                 @RequestParam("new-password") String newPassword,
@@ -88,7 +90,7 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("errorMessage", "Failed to update profile. User not found.");
         }
 
-        return "redirect:/";
+        return "redirect:/start-logout";
     }
 
 
@@ -99,12 +101,11 @@ public class HomeController {
         // Check if the user is authenticated
         if (authentication != null && authentication.isAuthenticated()) {
             // The principal should be an instance of your UserDetails implementation
-            // Assuming your UserDetails class has a method getId()
-            Object principal = authentication.getPrincipal();
 
-            if (principal instanceof User) {
-                return ((User) principal).getId();
-            }
+            // Assuming your UserDetails class has a method getId()
+            User currentUser = (User) authentication.getPrincipal();
+
+            return currentUser.getId();
         }
 
         // Return null or throw an exception if unable to determine the user ID

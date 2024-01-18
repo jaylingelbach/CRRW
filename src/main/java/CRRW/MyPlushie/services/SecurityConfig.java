@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("user")
 //
 ////                type  into "password"
-//                .password(passwordEncoder().encode("$2a$10$Gz64DyC3z5IUlQCe.9X.Wu6f4NNYYSD8sNNUJ8PL/HktMmYek6Ty."))
+//                .password(passwordEncoder().encode("password"))
 //                .roles("USER");
 //    }
 

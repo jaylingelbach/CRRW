@@ -1,9 +1,13 @@
 package CRRW.MyPlushie.models;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +23,7 @@ public class User {
 //
 //    @Lob
 //    private byte[] profilePicture; // we can store the binary data of the image, making it easier to store in MySQL.
-    
+
 
     public User(){}     //blank constructor
     public User(Long id, String username, String password/*, Set<Plushie> plushies*/  /* , byte[] profilePicture */) {
@@ -28,6 +32,37 @@ public class User {
         this.password = password;
         //this.plushies = plushies;
 //        this.profilePicture = profilePicture;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Can define roles or authorities for your user here for future usage
+        // For simplicity, returns an empty list for now
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // You can implement your logic for account expiration here
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // You can implement your logic for account locking here
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // You can implement your logic for credentials expiration here
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // You can implement your logic for enabling/disabling the user here
+        return true;
     }
 
     public Long getId() {

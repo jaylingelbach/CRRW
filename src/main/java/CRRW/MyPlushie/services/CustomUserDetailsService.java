@@ -25,11 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = optionalUser.orElseThrow(() ->
                 new UsernameNotFoundException("User not found with username: " + username));
 
-        System.out.println("custom user details service activated! loaded user: " + user.getUsername() + " with password: " + user.getPassword());
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                new ArrayList<>()
-        );
+        System.out.println("Custom user details service activated! Loaded user: " + user.getUsername() + " with password: " + user.getPassword());
+
+        // provides Spring Security with the necessary user details for authentication
+        return user;
     }
 }
