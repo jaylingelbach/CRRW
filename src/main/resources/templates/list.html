@@ -7,14 +7,34 @@
 <body>
 <h2>List of Plushies</h2>
 
+<!--ul>
+    <li th:each="plushie : ${plushies}">
+        <p>Name:<span th:text="${plushie.name}"></span></p>
+        <p>Emblem: <span th:text="${plushie.emblem.name()}"></span></p>
+        <p>Description: <span th:text="${plushie.description}"></span></p>
+        <p>Date: <span th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></span></p>
+        <p>Photo:<img th:src="${plushie.photo}" alt="Photo"/></p>
+        <p>Zipcode: <span th:text="${plushie.zipcode}"></span></p>
+        <p>< Edit button >
+            <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a></p>
+
+        <p>< Delete button >
+            <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" onclick="return confirm('Are you sure?')">Delete</a></p>
+
+    </li>
+</ul-->
+
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Emblem</th>
         <th>Description</th>
-        <th>Price</th>
-        <th>Actions</th>
+        <th>Date</th>
+        <th>Photo</th>
+        <th>Zipcode</th>
+
     </tr>
     </thead>
     <tbody>
@@ -22,18 +42,28 @@
     <tr th:each="plushie : ${plushies}">
         <td th:text="${plushie.id}"></td>
         <td th:text="${plushie.name}"></td>
+        <td th:text="${plushie.emblem}"></td>
         <td th:text="${plushie.description}"></td>
+        <td th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></td>
+        <td img th:src="${plushie.photo}" alt="Photo"/></td>
         <td th:text="${plushie.zipcode}"></td>
-        <!--td>
+        <td>
             < Edit button >
             <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a>
 
             < Delete button >
             <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" onclick="return confirm('Are you sure?')">Delete</a>
-        </td-->
+        </td>
     </tr>
     </tbody>
 </table>
+<!-- Display enum values -->
+<div>
+    <h3>Enum Values</h3>
+    <ul>
+        <li th:each="emblemName : ${emblem}" th:text="${emblemName}"></li>
+    </ul>
+</div>
 
 <!-- Link to add a new plushie -->
 <p><a th:href="@{/plushies/add}">Add a new Plushie</a></p>

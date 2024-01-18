@@ -243,9 +243,11 @@
     <input type="submit" value="Search" />
 </form>
 
-    <h2>Search Results</h2>
 
+    <div class="results">
+        <h2>Search Results</h2>
     <ul>
+
         <li th:each="plushie : ${plushies}">
             <p>Name:<span th:text="${plushie.name}"></span></p>
             <p>Emblem: <span th:text="${plushie.emblem.name()}"></span></p>
@@ -255,7 +257,7 @@
             <p>Zipcode: <span th:text="${plushie.zipcode}"></span></p>
         </li>
     </ul>
-
+    </div>
 </div>
 </div>
 </head>

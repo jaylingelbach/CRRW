@@ -30,7 +30,7 @@ public class SearchController {
     public SearchController() {
         columnChoices.put("all", "All");
         columnChoices.put("name", "Name");
-        columnChoices.put("emblem", "Emblem");
+        columnChoices.put("zipcode", "Zipcode");
 
     }
 
