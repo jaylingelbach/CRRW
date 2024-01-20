@@ -19,8 +19,14 @@ public class Plushie {
     private String name;
     private Emblem emblem;
     private String description;
+
     private Date dateAdopted;
-    private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String photo;
+
+    // @Column(columnDefinition = "LONGBLOB")
+    // private byte[] photo; // we can store the binary data of the image, making it easier to store in MySQL.
     private Integer zipcode;
 
     @ManyToOne
@@ -38,7 +44,7 @@ public class Plushie {
     // TODO: finish constructor and get/set stuff
     // TODO: include categories
 
-    public Plushie(Long id, String name, Emblem emblem, String description, Date dateAdopted, byte[] photo, Integer zipcode, User user, String purchaseLink)
+    public Plushie(Long id, String name, Emblem emblem, String description, Date dateAdopted, String photo, Integer zipcode, User user, String purchaseLink)
     {
         this.id = id;
         this.name = name;
@@ -90,11 +96,15 @@ public class Plushie {
     }
 
 
-    public byte[] getPhoto() {
+    //public byte[] getPhoto() {        return photo;    }
+
+    //public void setPhoto(byte[] photo) {        this.photo = photo;    }
+
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

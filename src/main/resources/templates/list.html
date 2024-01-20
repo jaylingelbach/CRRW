@@ -46,6 +46,10 @@
         <td th:text="${plushie.description}"></td>
         <td th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></td>
         <td img th:src="${plushie.photo}" alt="Photo"/></td>
+        <!--td><img th:if="${plushie.photo != null}" th:src="@{images/jpeg}"  alt="Plushie Photo"/></td-->
+        <!--td><img th:if="${plushie.photo != null}" th:src="'data:images/jpeg'" + #strings.bytes(plushie.photo) alt="Plushie Photo"/></td-->
+        <!--img th:src="'data:image/jpeg;base64,' + ${photoBase64}" alt="Plushie Photo"/-->
+        <!--td><img class="card-img-top embed-responsive-item" th:src="@{'/images/'+${plushie.photo}}"  alt="Card image" style="width:100%"></td-->
         <td th:text="${plushie.zipcode}"></td>
         <td>
             < Edit button >

@@ -10,7 +10,7 @@
 
 <h2>Edit Plushie</h2>
 
-<form th:action="@{/edit/{id}(id=${plushie.id})}" th:object="${plushie}" method="post">
+<form th:action="@{/plushies/edit/{id}(id=${plushie.id})}" th:object="${plushie}" method="post">
     <input type="hidden" th:field="*{id}" />
 
     <label for="name">Name:</label>
@@ -41,7 +41,7 @@
     <button type="submit">Update Plushie</button>
 </form>
 
-<!-- Add a link to go back to the plushies list -->
+<!--  link to go back to the plushies list -->
 <a th:href="@{/plushies}">Back to Plushies List</a>
 
 </body>

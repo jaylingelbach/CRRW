@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +36,23 @@ public class PlushieController {
     }
 
     @PostMapping("/add")
-    public String addPlushie(@ModelAttribute Plushie plushie) {
+    public String addPlushie(@ModelAttribute Plushie plushie/*,@RequestParam("photo") MultipartFile photoFile*/)
+        {
+            /* Convert MultipartFile to String using the FileConverter
+            String base64EncodedPhoto = photoFile.convertMultipartFileToString(photoFile);
+
+            // Set the photo field in the Plushie object
+            plushie.setPhoto(base64EncodedPhoto);
+            // Convert MultipartFile to byte[]
+            try {
+                String photoBytes = photoFile.getPhoto();
+                plushie.setPhoto(photoBytes);
+                plushieRepository.save(plushie);
+            } catch (IOException e) {
+                // Handle the exception (e.g., log it, show an error message)
+                e.printStackTrace();
+            }*/
+
         plushieRepository.save(plushie);
         return "redirect:/plushies";
     }
@@ -51,25 +70,11 @@ public class PlushieController {
             return "redirect:/plushies";
         }
     }
-
-    /*@PostMapping("/edit/{id}")
-    public String updatePlushie(@ModelAttribute Plushie updatedPlushie) {
-        // Perform update logic using the repository
-        plushieRepository.save(updatedPlushie);
-        return "list";
-    }*/
-
-    /*@GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        Optional<Plushie> optionalPlushie = plushieRepository.findById(id);
-        optionalPlushie.ifPresent(plushie -> model.addAttribute("plushie", plushie));
-        return optionalPlushie.map(plushie-> "editPlushie").orElse("notFound");
-    }*/
-
+    // Handle edit form submission and return to plushie list
     @PostMapping("/edit/{id}")
-    public String editPlushie(@PathVariable Long id, @ModelAttribute Plushie updatedPlushie) {
+    public String updatePlushie(@PathVariable Long id, @ModelAttribute Plushie updatedPlushie,Model model) {
         Optional<Plushie> optionalPlushie = plushieRepository.findById(id);
-        if (optionalPlushie.isPresent()) {
+        //if (optionalPlushie.isPresent()) {
             Plushie existingPlushie = optionalPlushie.get();
             existingPlushie.setName(updatedPlushie.getName());
             existingPlushie.setEmblem(updatedPlushie.getEmblem());
@@ -79,14 +84,17 @@ public class PlushieController {
             existingPlushie.setZipcode(updatedPlushie.getZipcode());
 
             plushieRepository.save(existingPlushie);
+            //model.addAttribute("emblem", Emblem.values());
+            //model.addAttribute("plushie",existingPlushie);
             return "redirect:/plushies";
-        } else {
-            return "notFound";
-        }
+        // }
+        //else {
+        //    return "notFound";
+        //}
     }
 
     // Handle delete operation
-    @GetMapping("/{id}/delete")
+    @GetMapping("/delete/{id}")
     public String deletePlushie(@PathVariable Long id) {
         Optional<Plushie> plushieOptional = plushieRepository.findById(id);
 
@@ -99,10 +107,5 @@ public class PlushieController {
 
         return "redirect:/plushies";
     }
-    /*@GetMapping("/delete/{id}")
-    public String deleteItem(@PathVariable Long id) {
-        itemRepository.deleteById(id);
-        return "redirect:/items";
-    }
-}*/
+
 }
