@@ -61,7 +61,7 @@ public class SearchController {
         model.addAttribute("Hi", "Plushies with " + columnChoices.get(searchTerm) + ": " + searchTerm);
         model.addAttribute("plushies", plushies);
 
-        return "search";
+        return "list";
     }
 
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
 
 <head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/plushiebox.css">
-    <link th:href="@{/css/Myplushie.css}" rel="stylesheet" />
-    <title>MyPlushie</title>
+    <link rel="stylesheet" type="text/css" href="/css/Myplushie.css">
+    <title th:text="'My Plushie' + ${title == null ? '' : ' :: ' + title}">My Plushie</title>
 </head>
 <body>
     <div th:fragment="page-header" class="top-bar">
@@ -33,10 +33,6 @@
         <!--spacer needed due to some issues with the CSS, IntelliJ likes to be silly sometimes-->
         <div style="width: 25px"></div>
     </div>
-
-
-
-
 </body>
 </html>
 

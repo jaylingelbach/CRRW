@@ -1,75 +1,296 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List of Plushies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/plushiebox.css">
+    <title>MyPlushie</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+        }
+
+        .top-bar {
+    width: 100%;
+    display: flex;
+    margin-top: 10px; /* Adjust the margin as needed */
+    align-items: center;
+    position: fixed;
+        }
+
+
+
+               /* General button styles */
+       button {
+       border: 3px solid #8172BA;
+       padding: 8px 32px;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+       font-weight: 700;
+       }
+
+       Button:hover {
+       transform: scale(1.15);
+       }
+
+          .logout-button{
+        background-color: #A095EF;
+        padding: 6px;
+        color: white;
+        border: 3px solid #8172BA;
+        border-radius: 20px;
+        font-weight: bold;
+   }
+   .search-button{
+        background-color: #A095EF;
+        padding: 6px;
+        color: blue;
+        border: 3px solid #8172BA;
+        border-radius: 20px;
+        font-weight: bold;
+   }
+
+
+        .logo {
+            width: 200px;
+            height: auto;
+    padding-left: 25px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-top: 50px; /* Adjust top margin */
+        }
+
+
+        .main-container {
+    width: 600px;
+    }
+
+    .user-info-box {
+    display: flex;
+    padding: 15px; /* half of the padding for the plushie columns*/
+}
+
+    .user-column {
+    width: 175px;
+    text-align: center;
+}
+
+    .user-image{
+    width: 150px;
+        height: 150px;
+    object-fit: cover;
+    border-radius: 15%; /* Optional: for a circular image */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally within the user column */
+    }
+
+
+    .button-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 10px; /* Adjust the margin as needed to create space from the user column */
+    }
+
+    .add-pal-button {
+   background-color: #00FF7F;
+   border: 3px solid #00D16D;
+   color: black;
+   margin-top: 65px;
+
+}
+
+/*--SORT BY ROW STUFF */
+/*--SORT BY ROW STUFF */
+
+.sort-by-row {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-top: 10px; /* Adjust the margin as needed */
+    align-items: center;
+    }
+
+.sort-by-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.sort-by-text {
+    margin-right: 10px;
+    color: #8792AD;
+}
+
+.dropdown-container {
+    border: 3px solid #8792AD; /* Border around the dropdown container */
+    border-radius: 7px; /* Rounded corners */
+    width: 150px;
+    overflow: hidden; /* Hide overflow to prevent stretching */
+    display: flex;
+}
+
+.sort-dropdown {
+    width: 100%; /* Make the dropdown fill the container */
+    border: none; /* Remove the border from the dropdown */
+    padding: 5px;
+    outline: none;
+    text-align: center;
+    background-color: white; /* Optional: Set background color to match the page */
+}
+
+    .spacer {
+    flex-grow: 1; /* The spacer takes up available space and pushes other elements to the right */
+}
+
+    /*--PLUSHIE BOX STUFF */
+    /*--PLUSHIE BOX STUFF  */
+
+    .plushie-box {
+    /* background-color: red; */
+    display: flex;
+    font-weight: 700;
+    border: 3px solid #D0D9EA; /* Border around the dropdown container */
+    border-radius: 30px;
+    }
+
+    .plushie-box-column1 {
+    /* background-color: yellow; */
+    padding: 30px;
+    text-align: center;
+    }
+
+    .plushie-box-column2 {
+    width: 100%;
+    }
+
+    .edit-button {
+   background-color: #FFC466;
+   border: 2px solid #E09F36;
+   padding: 6px;
+   padding-left: 15px;
+   padding-right: 15px;
+}
+
+   .delete-button {
+   background-color: #FF719A;
+   border: 2px solid #F4406B;
+   padding: 6px;
+   padding-left: 15px;
+   padding-right: 15px;
+}
+    </style>
 </head>
+
 <body>
+<!--div th:replace="fragments :: page-header"></div-->
 <h2>List of Plushies</h2>
+<!--    Single example hardcoded plushie box, will automatically create these when given list of plushies
+    that belong to user-->
+<!--Plushie photo and name with id -->
 
-<!--ul>
-    <li th:each="plushie : ${plushies}">
-        <p>Name:<span th:text="${plushie.name}"></span></p>
-        <p>Emblem: <span th:text="${plushie.emblem.name()}"></span></p>
-        <p>Description: <span th:text="${plushie.description}"></span></p>
-        <p>Date: <span th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></span></p>
-        <p>Photo:<img th:src="${plushie.photo}" alt="Photo"/></p>
-        <p>Zipcode: <span th:text="${plushie.zipcode}"></span></p>
-        <p>< Edit button >
-            <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a></p>
+<div th:each="plushie : ${plushies}"class="plushie-box">
+    <div class="plushie-box-column1">
+        <img class=user-image th:src="@{'/images/'+${plushie.photo}}" alt="Plushie Photo">
+        <h3 style="margin-bottom: 0px;">
+            <!--p th:text="${plushie.id}">Plushie ID</p-->
+            <p th:text="${plushie.name}">Plushie Name</p>
+        </h3>
 
-        <p>< Delete button >
-            <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" onclick="return confirm('Are you sure?')">Delete</a></p>
+    </div>
 
-    </li>
-</ul-->
+    <!--        column 2-->
+    <div class="plushie-box-column2">
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Emblem</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Photo</th>
-        <th>Zipcode</th>
+        <!--            column 2 row TOP-->
+        <div style="display:flex; /* background-color: green; */ height: 70px;
+                    align-items: center; padding-left: 15px; padding-right: 15px;" >
+            <!--            Date adopted box-->
+                <div style="text-align: center; line-height: 0.3; ">
+                <p style="font-size: 13px">Date Adopted</p>
+                <p style="font-size: 13px" th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></p>
 
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate over plushies and display each row -->
-    <tr th:each="plushie : ${plushies}">
-        <td th:text="${plushie.id}"></td>
-        <td th:text="${plushie.name}"></td>
-        <td th:text="${plushie.emblem}"></td>
-        <td th:text="${plushie.description}"></td>
-        <td th:text="${#dates.format(plushie.dateAdopted, 'yyyy-MM-dd')}"></td>
-        <td img th:src="${plushie.photo}" alt="Photo"/></td>
-        <!--td><img th:if="${plushie.photo != null}" th:src="@{images/jpeg}"  alt="Plushie Photo"/></td-->
-        <!--td><img th:if="${plushie.photo != null}" th:src="'data:images/jpeg'" + #strings.bytes(plushie.photo) alt="Plushie Photo"/></td-->
-        <!--img th:src="'data:image/jpeg;base64,' + ${photoBase64}" alt="Plushie Photo"/-->
-        <!--td><img class="card-img-top embed-responsive-item" th:src="@{'/images/'+${plushie.photo}}"  alt="Card image" style="width:100%"></td-->
-        <td th:text="${plushie.zipcode}"></td>
-        <td>
-            < Edit button >
-            <a th:href="@{/plushies/edit/{id}(id=${plushie.id})}">Edit</a>
+                </div>
+            <div class="spacer"></div>
 
-            < Delete button >
-            <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" onclick="return confirm('Are you sure?')">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<!-- Display enum values -->
-<div>
-    <h3>Enum Values</h3>
-    <ul>
-        <li th:each="emblemName : ${emblem}" th:text="${emblemName}"></li>
-    </ul>
-</div>
+            <!--         Display Emblem:   emblem box-->
+                <div style="padding-left: 15px;">
+                <p th:text="${plushie.emblem}"></p>
+                <img style="width: 50px; height: 50px;" src="/images/emblems/*.jpg" height="200" width="200"/>
+                </div>
 
+            <div class="spacer"></div>
+
+            <!--      TODO:              Buy Me Link, will be hidden if no link is provided by this plushie-->
+                <div style="display: flex; height: 70px; align-items: center;">
+                    <div style="margin-left: auto">
+                    <a th:href="${plushie.purchaseLink}" target="_blank" >Buy Me Here!!</a>
+                    </div>
+                </div>
+
+
+        </div> <!--column 2 TOP ROW ends-->
+        <!--            column 2 ROW 2-->
+        <!--            Zipcode box-->
+        <div style="text-align: center; line-height: 0.3; ">
+            <p style="font-size: 13px">Zipcode</p>
+            <p th:text="${plushie.zipcode}"></p>
+
+        </div>
+
+        <!--  Description about the plushie -->
+        <div style="display:flex; /* background-color: grey; */
+            padding-left: 15px; padding-right: 15px; padding-bottom: 15px" th:text="${plushie.description}" >
+            Description
+        </div> <!--column 2  ROW 2 ends-->
+
+        <!--             column 2 ROW 3 EDIT and DELETE Plushie buttons-->
+        <div style="display:flex; /* background-color: green; */ height: 30px;
+   align-items: center; padding-left: 15px; padding-right: 15px;">
+
+
+
+
+            <a  th:href="@{/plushies/edit/{id}(id=${plushie.id})}">
+            <button style="margin-right: 8px" class="edit-button"> <img style="width: 20px; height: 20px;" src="/images/button_edit.png" alt="Edit Plushie"></button>
+            </a>
+                <!--                </a>-->
+            <div class="spacer"></div>
+
+            <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" >
+                <button class="delete-button">  <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete this plushie??')" alt="Delete Plushie"></button>
+            </a>
+        </div><!--column 2 ROW 3 ends -->
+
+    </div><!--Plushiebox column 2 ends -->
+
+    <!--        adds extra space after all generated plushie boxes have been added-->
+    <div style="margin-top: 75px;">
+
+    </div>
+        <!--div class="spacer"></div-->
+    </div><!--Plushie division loop ends -->
 <!-- Link to add a new plushie -->
-<p><a th:href="@{/plushies/add}">Add a new Plushie</a></p>
+<p>
+    <a th:href="@{/plushies/add}">
+    <button class="add-pal-button" name="addPalButton">Add Pal here</button>
+    </a>
+    <a th:href="@{/}">
+        <button class="add-pal-button" name="addPalButton">Go To Homepage</button>
+    </a>
+</p>
 </body>
 </html>
+
+
+
+

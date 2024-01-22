@@ -5,9 +5,11 @@ import CRRW.MyPlushie.repositories.PlushieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -36,24 +38,19 @@ public class PlushieController {
     }
 
     @PostMapping("/add")
-    public String addPlushie(@ModelAttribute Plushie plushie/*,@RequestParam("photo") MultipartFile photoFile*/)
+    public String addPlushie(@ModelAttribute @NotNull Plushie plushie, @RequestParam ("photo") @NotNull MultipartFile photoFile, Errors errors, Model model)
         {
-            /* Convert MultipartFile to String using the FileConverter
-            String base64EncodedPhoto = photoFile.convertMultipartFileToString(photoFile);
 
-            // Set the photo field in the Plushie object
-            plushie.setPhoto(base64EncodedPhoto);
+
             // Convert MultipartFile to byte[]
-            try {
-                String photoBytes = photoFile.getPhoto();
-                plushie.setPhoto(photoBytes);
-                plushieRepository.save(plushie);
-            } catch (IOException e) {
-                // Handle the exception (e.g., log it, show an error message)
-                e.printStackTrace();
-            }*/
+            plushie.setPhoto(photoFile.getOriginalFilename());
+            plushieRepository.save(plushie);
+            System.out.println(plushie.getPurchaseLink());
+            System.out.println(photoFile.getContentType());
+            System.out.println(photoFile.getOriginalFilename());
+            System.out.println(photoFile.getResource());
 
-        plushieRepository.save(plushie);
+            // plushieRepository.save(plushie);
         return "redirect:/plushies";
     }
     // Editing the Plushie
