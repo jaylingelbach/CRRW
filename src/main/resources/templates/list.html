@@ -225,7 +225,7 @@
             <!--         Display Emblem:   emblem box-->
                 <div style="padding-left: 15px;">
                 <p th:text="${plushie.emblem}"></p>
-                <img style="width: 50px; height: 50px;" src="/images/emblems/*.jpg" height="200" width="200"/>
+                <img style="width: 50px; height: 50px;" src="/images/emblems/*{plushie.emblem}.jpg" height="200" width="200"/>
                 </div>
 
             <div class="spacer"></div>
@@ -233,7 +233,8 @@
             <!--      TODO:              Buy Me Link, will be hidden if no link is provided by this plushie-->
                 <div style="display: flex; height: 70px; align-items: center;">
                     <div style="margin-left: auto">
-                    <a th:href="${plushie.purchaseLink}" target="_blank" >Buy Me Here!!</a>
+                        <p th:text="${plushie.purchaseLink}">Link</p>
+                    <!--a th:href="@{${plushie.purchaseLink}}" target="_blank" >Buy Me Here!!</a-->
                     </div>
                 </div>
 
@@ -261,13 +262,13 @@
 
 
             <a  th:href="@{/plushies/edit/{id}(id=${plushie.id})}">
-            <button style="margin-right: 8px" class="edit-button"> <img style="width: 20px; height: 20px;" src="/images/button_edit.png" alt="Edit Plushie"></button>
+            <button style="margin-right: 8px" class="edit-button"> <img style="width: 20px; height: 20px;" src="/images/button_edit.png" alt="Edit Plushie">Edit Plushie</button>
             </a>
                 <!--                </a>-->
             <div class="spacer"></div>
 
             <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" >
-                <button class="delete-button">  <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete this plushie??')" alt="Delete Plushie"></button>
+                <button class="delete-button">  <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete this plushie??')" alt="Delete Plushie">Delete Plushie</button>
             </a>
         </div><!--column 2 ROW 3 ends -->
 

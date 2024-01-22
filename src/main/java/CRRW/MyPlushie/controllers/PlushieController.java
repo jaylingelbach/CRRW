@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -38,19 +39,38 @@ public class PlushieController {
     }
 
     @PostMapping("/add")
-    public String addPlushie(@ModelAttribute @NotNull Plushie plushie, @RequestParam ("photo") @NotNull MultipartFile photoFile, Errors errors, Model model)
+    public String addPlushie(@ModelAttribute Plushie plushie/*, @RequestParam ("photo") MultipartFile photoFile,Model model*/)
         {
+            /* Convert MultipartFile to String using the FileConverter
+            String base64EncodedPhoto = photoFile.convertMultipartFileToString(photoFile);
 
+            // Set the photo field in the Plushie object
+            plushie.setPhoto(base64EncodedPhoto);
 
             // Convert MultipartFile to byte[]
-            plushie.setPhoto(photoFile.getOriginalFilename());
+            try {
+                String photoBytes = photoFile.getPhoto();
+                plushie.setPhoto(photoBytes);
+                plushieRepository.save(plushie);
+            } catch (IOException e) {
+                // Handle the exception (e.g., log it, show an error message)
+                e.printStackTrace();
+            }*/
+
+            // Convert MultipartFile to byte[]
+
+
+            //plushie.setPhoto(photoFile.getOriginalFilename());
+            System.out.println("Before saving plushie");
             plushieRepository.save(plushie);
-            System.out.println(plushie.getPurchaseLink());
-            System.out.println(photoFile.getContentType());
-            System.out.println(photoFile.getOriginalFilename());
-            System.out.println(photoFile.getResource());
+//            System.out.println(plushie.getPurchaseLink());
+//            System.out.println(photoFile.getContentType());
+//            System.out.println(photoFile.getOriginalFilename());
+//            System.out.println(photoFile.getResource());
 
             // plushieRepository.save(plushie);
+        //return "list";
+
         return "redirect:/plushies";
     }
     // Editing the Plushie

@@ -31,6 +31,7 @@ public class Plushie {
 
     @ManyToOne
     private User user;
+
     private String purchaseLink;
 
 
