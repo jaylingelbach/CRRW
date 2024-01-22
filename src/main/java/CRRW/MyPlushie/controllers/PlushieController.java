@@ -99,7 +99,7 @@ public class PlushieController {
             existingPlushie.setDateAdopted(updatedPlushie.getDateAdopted());
             existingPlushie.setPhoto(updatedPlushie.getPhoto());
             existingPlushie.setZipcode(updatedPlushie.getZipcode());
-
+            existingPlushie.setPurchaseLink(updatedPlushie.getPurchaseLink());
             plushieRepository.save(existingPlushie);
             //model.addAttribute("emblem", Emblem.values());
             //model.addAttribute("plushie",existingPlushie);

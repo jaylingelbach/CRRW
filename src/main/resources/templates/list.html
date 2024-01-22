@@ -201,6 +201,7 @@
 <div th:each="plushie : ${plushies}"class="plushie-box">
     <div class="plushie-box-column1">
         <img class=user-image th:src="@{'/images/'+${plushie.photo}}" alt="Plushie Photo">
+<!--        <img class=user-image th:src="*{'data:image/png;base64,'+plushie.photo}" alt="Plushie Photo">-->
         <h3 style="margin-bottom: 0px;">
             <!--p th:text="${plushie.id}">Plushie ID</p-->
             <p th:text="${plushie.name}">Plushie Name</p>
@@ -234,11 +235,13 @@
 
             <div class="spacer"></div>
 
-            <!--      TODO:              Buy Me Link, will be hidden if no link is provided by this plushie-->
+            <!--                  Buy Me Link, will be hidden if no link is provided by this plushie-->
                 <div style="display: flex; height: 70px; align-items: center;">
                     <div style="margin-left: auto">
-                        <p th:text="${plushie.purchaseLink}">Link</p>
-                    <!--a th:href="@{${plushie.purchaseLink}}" target="_blank" >Buy Me Here!!</a-->
+<!--                        <p th:text="${plushie.purchaseLink}">Link</p>-->
+<!--                        th:src="@{${'/images/emblems/'+plushie.emblem+'.png'}}"-->
+<!--                    <a th:href="@{${plushie.purchaseLink}}" target="_blank" >Buy Me Here!!</a>-->
+                        <a th:href="@{${plushie.purchaseLink}}" target="_blank" >Buy Me Here!!</a>
                     </div>
                 </div>
 
@@ -272,7 +275,7 @@
             <div class="spacer"></div>
 
             <a th:href="@{/plushies/delete/{id}(id=${plushie.id})}" >
-                <button class="delete-button">  <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete this plushie??')" alt="Delete Plushie">Delete Plushie</button>
+                <button class="delete-button">  <img style="width: 20px; height: 20px;" src="/images/button_X.png" onclick="return confirm('WAIT!! You really want to delete??')"  alt="Delete Plushie">Delete</button>
             </a>
         </div><!--column 2 ROW 3 ends -->
 
