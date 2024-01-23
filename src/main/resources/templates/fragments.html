@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/plushiebox.css">
+    <link rel="stylesheet" type="text/css" href="/css/Myplushie.css">
+    <title th:text="'My Plushie' + ${title == null ? '' : ' :: ' + title}">My Plushie</title>
+</head>
+<body>
+    <div th:fragment="page-header" class="top-bar">
+
+        <img th:src="@{/images/myplushielogo.png}" class="logo" alt="My Plushie App Logo">
+
+        <div class="spacer"></div>
+
+        <a th:href="@{/editaccount}">
+            <button style="height: 35px;" class="edit-button"> <img style="height: 15px;"src="/images/button_edit.png" alt="Edit Plushie"></button>
+        </a>
+        <a th:href="@{/search}">
+            <button style="height: 35px;" class="search-button"> <img style="height: 15px;"src="/images/button_search.png" alt="Search Plushie"></button>
+        </a>
+        <div style="width: 7px"></div>
+
+
+
+        <a th:href="@{/start-logout}">
+            <button style="height: 35px; padding-left: 15px; padding-right: 15px" class="logout-button" onclick="logoutUser()">Logout</button>
+        </a>
+
+
+        <!--spacer needed due to some issues with the CSS, IntelliJ likes to be silly sometimes-->
+        <div style="width: 25px"></div>
+    </div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+
+
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{/css/techjobs.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+<title th:text="'TechJobs' + ${title == null ? '' : ' :: ' + title}">TechJobs</title>
+</head>
+
+<body>
+
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/}" class="navbar-brand">TechJobs</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/list}">List</a></li>
+                <li><a th:href="@{/search}">Search</a></li>
+                <li><a th:href="@{/add}">Add Jobs</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html> -->

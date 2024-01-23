@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Plushie </title>
+</head>
+<body>
+<h2>Add Plushie Form</h2>
+
+
+<form th:action="@{/plushies/add}" th:object="${plushie}" method="post" ><!--enctype="multipart/form-data">-->
+
+    <label for="name">Plushie Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required/>
+    <br/>
+    <label for="emblem">Emblem:</label>
+    <select id="emblem" name="emblem" th:field="*{emblem}" required>
+        <option th:each="emblem : ${T(CRRW.MyPlushie.models.Emblem).values()}"
+                th:value="${emblem}"
+                th:text="${emblem.name()}"></option>
+    </select>
+    <br/>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" th:field="*{description}" required></textarea>
+    <br/>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" th:field="*{dateAdopted}" required/>
+    <br/>
+    <label for="photo">Photo:</label>
+    <input type="file" id="photo" name="photo" accept="image/*"/>
+    <br/>
+    <label for="zipcode">Zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode" th:field="*{zipcode}" required/>
+    <br/>
+    <label for="purchaseLinkText">PurchaseLink:</label>
+    <input type="text" id="purchaseLinkText" name="purchaseLink" th:field="*{purchaseLink}" required/>
+    <button type="submit">Save Plushie</button>
+</form>
+
+</body>
+</html>
+
+<!--form th:action="@{/plushies/add}" th:object="${plushie}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="${plushie.name}" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" th:field="${plushie.description}" required></textarea>
+
+    <button type="submit">Add Plushie</button>
+
+
+</form-->
+
