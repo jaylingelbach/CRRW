@@ -61,7 +61,7 @@ public class PlushieController {
 
 
             //plushie.setPhoto(photoFile.getOriginalFilename());
-            System.out.println("Before saving plushie");
+            //System.out.println("Before saving plushie");
             plushieRepository.save(plushie);
 //            System.out.println(plushie.getPurchaseLink());
 //            System.out.println(photoFile.getContentType());
